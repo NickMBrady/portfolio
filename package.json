@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": false,
   "version": "0.0.0",
-  "homepage": "nickmbrady.github.io/portfoliom/",
+  "homepage": "nickmbrady.github.io/portfolio/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
