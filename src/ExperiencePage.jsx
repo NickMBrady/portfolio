@@ -13,7 +13,7 @@ export default function ExperiencePage() {
       <Nav>
         <NavLogoSection>
           <LogoBox>
-            <a href="/nbwebsite/"><Logo src={logoImg} alt="Logo" /> </a>
+            <a href="/portfolio/"><Logo src={logoImg} alt="Logo" /> </a>
             <NBTitle>Nick Brady</NBTitle>
           </LogoBox>
         </NavLogoSection>
@@ -131,6 +131,10 @@ const ContentSection = styled.div`
   justify-content: flex-start; /* Push items to the top */
   border-left: 0.5px solid var(--dividing-line);
   border-bottom: 0.5px solid var(--dividing-line);
+
+  @media (max-width: 576px) {
+    padding-bottom: 100px;
+  }
 `;
 
 const Row = styled.div`

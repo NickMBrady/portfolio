@@ -24,6 +24,10 @@ export const ContentContainer = styled.div`
   @media (max-width: 800px) {
     padding: 50px 15px;
   }
+  
+  @media (max-width: 576px) {
+    padding-bottom: 100px;
+  }
 `;
 
 export const BoldTitle = styled.a`
@@ -32,6 +36,10 @@ export const BoldTitle = styled.a`
   transition: color 1s ease;
   padding-bottom: 40px;
   padding-right: 40px;
+  
+  @media (max-width: 576px){
+    font-size: 30px;
+  }
 `;
 
 export const BoldSubHeading = styled.p`
@@ -43,7 +51,11 @@ export const BoldSubHeading = styled.p`
 export const SubHeading = styled.p`
     font-size: 20px;
     font-weight: 500;
-    padding-top: 40px; /* Adjust this value as needed */
+    padding-top: 30px; 
+    
+    @media (max-width: 576px){
+      padding-top: 0px;
+    }
 `;
 
 export const Paragraph = styled.p`
@@ -51,6 +63,10 @@ export const Paragraph = styled.p`
   font-weight: 200;
   line-height: 2.0;
   padding: 0px 0;
+  
+  @media (max-width: 576px){
+    font-size: 14px;
+  }
 `;
 
 export const Image = styled.img`

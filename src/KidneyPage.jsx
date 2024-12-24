@@ -24,7 +24,7 @@ export default function KidneyPage() {
       <Nav>
         <NavLogoSection>
           <LogoBox>
-            <a href="/nbwebsite/"><Logo src={logoImg} alt="Logo" /> </a>
+            <a href="/portfolio/"><Logo src={logoImg} alt="Logo" /> </a>
             <NBTitle>Nick Brady</NBTitle>
           </LogoBox>
         </NavLogoSection>

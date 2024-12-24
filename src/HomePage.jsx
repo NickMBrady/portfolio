@@ -19,7 +19,7 @@ export default function HomePage(){
       <Nav>
         <NavLogoSection>
           <LogoBox>
-            <a href="/nbwebsite/"><Logo src={logoImg} alt="Logo" /> </a>
+            <a href="/portfolio/"><Logo src={logoImg} alt="Logo" /> </a>
             <NBTitle>Nick Brady</NBTitle>
           </LogoBox>
         </NavLogoSection>
@@ -104,6 +104,12 @@ const Main = styled.div`
   flex-grow: 1;
   height: calc(100vh - 175px);
   width: 100%;
+
+  @media (max-width: 576px) {
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    /* background-color: red; */
+  }
 `;
 const MainGrid = styled.div`
   display: grid;
@@ -114,7 +120,11 @@ const MainGrid = styled.div`
   @media (max-width: 576px) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-  height: calc(100vh - 50px);
+    margin-bottom: 100px;
+    /* grid-template-rows: auto repeat(4, 1fr);  */
+    /* height: calc(100vh - 100px); */
+    /* overflow-y: auto; */
+    /* height: 100vh; */
   }
 `;
 
@@ -293,11 +303,10 @@ const ProjectSection = styled(GridSection)`
 
     ${PlusIcon} {
       transform: rotate(90deg);  /* Rotate the image 90 degrees on hover */
-      /* filter: invert(0%) hue-rotate(90deg) brightness(1.5); */
       color: #1a2937; 
     }
 
-    ${ArrowIcon}{
+    ${ArrowIcon} {
       transform: scaleX(-1);
       color: #1a2937; 
     }

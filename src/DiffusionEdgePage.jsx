@@ -18,7 +18,7 @@ export default function DiffusionEdgePage() {
       <Nav>
         <NavLogoSection>
           <LogoBox>
-            <a href="/nbwebsite/"><Logo src={logoImg} alt="Logo" /> </a>
+            <a href="/portfolio/"><Logo src={logoImg} alt="Logo" /> </a>
             <NBTitle>Nick Brady</NBTitle>
           </LogoBox>
         </NavLogoSection>

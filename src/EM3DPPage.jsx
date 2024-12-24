@@ -45,7 +45,7 @@ export default function EM3DPPage() {
       <Nav>
         <NavLogoSection>
           <LogoBox>
-            <a href="/nbwebsite/"><Logo src={logoImg} alt="Logo" /> </a>
+            <a href="/portfolio/"><Logo src={logoImg} alt="Logo" /> </a>
             <NBTitle>Nick Brady</NBTitle>
           </LogoBox>
         </NavLogoSection>
@@ -65,7 +65,7 @@ export default function EM3DPPage() {
       </Nav>
       <Main>
         <ContentContainer>
-          <BoldTitle>Enhancing FDM 3D Printing with Electromagnetic Control</BoldTitle>
+          <BoldTitle>Enhancing FDM 3D Printing with Electro&shy;magnetic Control</BoldTitle>
           <BubbleDiv>
                   <KeywordBubble>3D Printing</KeywordBubble>
                   <KeywordBubble>Electronics and Microcontrollers</KeywordBubble>

@@ -17,11 +17,7 @@ const CardContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding: 20px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 10px;
+    padding: 25px;
   }
 `;
 

@@ -15,4 +15,12 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  
 }
+
+
+.slick-dots li button {
+  filter: invert(1);
+}
+
+/* .slick-dots li.slick-active button { } */

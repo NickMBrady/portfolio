@@ -6,6 +6,8 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } from './NavBarComponent';
 import logoImg from "/assets/nb-logo.png";
 
+import headshotImg from "/assets/headshot.png";
+
 export default function AboutPage() {
   return (
     <>
@@ -13,7 +15,7 @@ export default function AboutPage() {
       <Nav>
         <NavLogoSection>
           <LogoBox>
-            <a href="/nbwebsite/"><Logo src={logoImg} alt="Logo" /> </a>
+            <a href="/portfolio/"><Logo src={logoImg} alt="Logo" /> </a>
             <NBTitle>Nick Brady</NBTitle>
           </LogoBox>
         </NavLogoSection>
@@ -37,9 +39,12 @@ export default function AboutPage() {
             <BoldTitle>About</BoldTitle>
           </AboutSection>
           <DescriptionSection>
+            <Section>
+              <RoundedImage src={headshotImg} alt="Headshot" />
+              <AboutHeaderText> Hi! I’m a student at Duke University interested in machine learning, software development, and biomedical engineering.
+              </AboutHeaderText>
+            </Section>
             <DescriptionText>
-              Hi! I’m a student at Duke University interested in machine learning, software development, and biomedical engineering.
-              <br /><br />
               Thank you so much for taking the time to visit my website! I'm from Massachusetts, and it
               was in our garage and basement that I got my start with engineering. I was fascinated that with
               only a 3D printer and some tools I had the capacity to solve real problems. My longest-running
@@ -55,7 +60,7 @@ export default function AboutPage() {
               The 'Projects' section features a tour of my favorite work over the years. For more information, including
               instructions, files, code, and everything else, please visit the Github repository link for each.
               <br /><br />
-              
+
             </DescriptionText>
           </DescriptionSection>
         </MainGrid>
@@ -114,9 +119,14 @@ const AboutSection = styled.div`
 const DescriptionSection = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   border-left: 0.5px solid var(--dividing-line);
   border-bottom: 0.5px solid var(--dividing-line);
+  
+  @media (max-width: 576px) {
+    padding-bottom: 100px;
+  }
 `;
 
 const DescriptionText = styled.p`
@@ -125,6 +135,10 @@ const DescriptionText = styled.p`
   font-weight: 200;
   padding: 30px;
   line-height: 1.5;
+  
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 `;
 
 const BoldTitle = styled.a`
@@ -141,3 +155,51 @@ const BoldTitle = styled.a`
     padding-bottom: 20px;
   }
 `;
+
+const RoundedImage = styled.img`
+  /* max-height: 300px; */
+  height: 100%;
+  max-height: 500px;
+  max-width: 30%;
+  display: block;
+  object-fit: cover;
+
+  @media (max-width: 800px) {
+    max-width: 40%;
+  }
+  
+  @media (max-width: 500px) {
+    max-width: 100%;
+    width: 100%;
+  }
+`
+
+const Section = styled.div`
+  width: 100%;
+  border-bottom: 0.5px solid var(--dividing-line);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+`
+
+const AboutHeaderText = styled(DescriptionText)`
+  font-size: 25px;
+  margin-bottom: 50px;
+  font-weight: 300; 
+  padding: 0px 80px;
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+    padding-bottom: 20px;
+    padding: 0px 40px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 18px;
+    padding: 0px 20px;
+  }
+`

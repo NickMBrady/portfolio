@@ -23,7 +23,7 @@ export default function ProjectsPage() {
       <Nav>
         <NavLogoSection>
           <LogoBox>
-            <a href="/nbwebsite/"><Logo src={logoImg} alt="Logo" /> </a>
+            <a href="/portfolio/"><Logo src={logoImg} alt="Logo" /> </a>
             <NBTitle>Nick Brady</NBTitle>
           </LogoBox>
         </NavLogoSection>
@@ -223,6 +223,10 @@ const ContentSection = styled.div`
   justify-content: flex-start; /* Push items to the top */
   border-left: 0.5px solid var(--dividing-line);
   border-bottom: 0.5px solid var(--dividing-line);
+
+  @media (max-width: 576px) {
+    padding-bottom: 100px;
+  }
 `;
 
 const LeftCol = styled.div`
@@ -320,6 +324,10 @@ const BoldTitle = styled.a`
     font-size: 20px;
     padding-bottom: 20px;
   }
+  
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
 `;
 
 const PlusSign = styled.div`
@@ -331,16 +339,14 @@ const PlusSign = styled.div`
   transition: opacity 0.3s ease;
   font-size: 30px;
   color: var(--light-gray);
-  pointer-events: none; /* Ensure the plus sign does not interfere with hover */
-  /* background-color: var(--light-gray); */
+  pointer-events: none;
 
-  @media (max-width: 800px) {
+  @media (max-width: 768px) {
     display: none; /* Hide the plus sign on mobile devices */
   }
 `;
 
 const Row = styled.div`
-  /* height: 700px; */
   display: flex;
   width: 100%;
   border-bottom: 0.5px solid var(--dividing-line);
@@ -357,7 +363,14 @@ const Row = styled.div`
     opacity: 1;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 768px) {
     flex-direction: column;
+    &:hover {
+      transform: none;
+    }
+
+    &:hover ${PlusSign} {
+      opacity: 0;
+    }
   }
 `;
