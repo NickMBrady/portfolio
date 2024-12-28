@@ -1,3 +1,1 @@
 /* /index.html 200 
-
-portfolio/projects/cardiacsimulator   portfolio/#/projects/cardiacsimulator   200
