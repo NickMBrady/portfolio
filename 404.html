@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script>
+      // Redirect to the correct hash-based route
+      var redirectTo = window.location.pathname + window.location.search;
+      if (redirectTo === "/projects/cardiacsimulator") {
+        window.location.replace("/#/projects/cardiacsimulator");
+      } else {
+        window.location.replace("/");
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
