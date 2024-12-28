@@ -14,6 +14,8 @@ import orthoticImg from "/assets/orthotic/orthotic.jpg";
 import img3d from "/assets/3DEm/hero.webp";
 import kidney from "/assets/kidney/hero2.webp";
 import appImg from "/assets/intervalTimer/hero.jpg";
+import cardiacImg from "/assets/cardiac/main.jpeg";
+import chinrestImg from "/assets/chinrest/chinrest.jpg";
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
@@ -47,45 +49,29 @@ export default function ProjectsPage() {
             <BoldTitle>Projects</BoldTitle>
           </ProjectsSection>
           <ContentSection>
-            <Row onClick={() => navigate('/projects/compositeelementdetection')}>
+            <Row onClick={() => navigate('/projects/cardiacsimulator')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
-                <ProjectTitle>Composite Element Detection</ProjectTitle>
-                <Paragraph>Fully featured GUI for the automatic segmentation and statistical characterization of boron, tungsten, carbon, and polymer from cross-sectional images of a composite material.</Paragraph>
+                <ProjectTitle>Cardiac Simulator Capable of Controlled Pulsatile Flow</ProjectTitle>
+                <Paragraph>Engineered the hardware solution for an anatomically accurate fluid pump system, satisfying pressure and flow rate criteria with simulated "heart beats": periodic modulations in flow pressure and velocity (pulsatile flow). </Paragraph>
                 <BubbleDiv>
-                  <KeywordBubble>Software Development</KeywordBubble>
-                  <KeywordBubble>Graphical User Interface</KeywordBubble>
-                  <KeywordBubble>Computer Vision</KeywordBubble>
+                  <KeywordBubble>3D Printing</KeywordBubble>
+                  <KeywordBubble>C++</KeywordBubble>
+                  <KeywordBubble>Arduino</KeywordBubble>
+                  <KeywordBubble>Fluid Dynamics</KeywordBubble>
                 </BubbleDiv>
               </LeftCol>
               <RightCol>
                 <ImageWrapper>
-                  <ProjectImage src={CEDImg}/>
-                </ImageWrapper>
-              </RightCol>
-            </Row>
-            <Row onClick={() => navigate('/projects/diffusionedge')}>
-              <PlusSign>+</PlusSign>
-              <LeftCol>
-                <ProjectTitle>Diffusion Probabalistic Model Based Boron Grain Detection</ProjectTitle>
-                <Paragraph>Implemented a state-of-the-art diffusion-based edge detection model to create automated boron grain segmentation and statistical characterization software.</Paragraph>
-                <BubbleDiv>
-                  <KeywordBubble>Convolutional Neural Networks</KeywordBubble>
-                  <KeywordBubble>Software Development</KeywordBubble>
-                  <KeywordBubble>Computer Vision</KeywordBubble>
-                </BubbleDiv>
-              </LeftCol>
-              <RightCol>
-                <ImageWrapper>
-                  <ProjectImage src={diffImg}/>
+                  <ProjectImage src={cardiacImg}/>
                 </ImageWrapper>
               </RightCol>
             </Row>
             <Row onClick={() => navigate('/projects/orthoticprosthetic')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
-                <ProjectTitle>Moldable, Algoritmically Generated Prosthetic and Orthotic Devices</ProjectTitle>
-                <Paragraph>Developed a novel moldable workflow for open-source orthotic and prosthetic solutions with superior functionality and comfort. Wrote software to generate medical device size and shape from only multi-axial pictures of patient appendages. Collaborating with 2ft Prosthetics on prototyping and deployment.</Paragraph>
+                <ProjectTitle>Moldable, Algorithmically Generated Prosthetic and Orthotic Devices</ProjectTitle>
+                <Paragraph>Developed a novel moldable workflow for open-source orthotic and prosthetic solutions with superior functionality and comfort. Wrote software to generate medical device size and shape from only multi-axial pictures of patient appendages. Collaborated with nonprofit 2ft Prosthetics on prototyping and deployment.</Paragraph>
                 <BubbleDiv>
                   <KeywordBubble>Material Dynamics</KeywordBubble>
                   <KeywordBubble>3D Printing</KeywordBubble>
@@ -117,39 +103,21 @@ export default function ProjectsPage() {
                 </ImageWrapper>
               </RightCol>
             </Row>
-            <Row onClick={() => navigate('/projects/kidneystonenavigation')}>
+            <Row onClick={() => navigate('/projects/chinrest')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
-                <ProjectTitle>Kidney Stone Removal via Autonomous Aiming of a Robotic Ureteroscope during Laser Lithotripsy</ProjectTitle>
-                <Paragraph>Created an open-source 3D Slicer extension for the detection of and two-stage navigation toward kidney stones using a robotic ureteroscope. During gross guidance, preliminary targets are identified with hue, stabilized through temporal averaging, and validated with K-means grouping. Then, during fine guidance, a hue-and-lightness based region growing algorithm accurately segments stones in preparation for laser lithotripsy (ablation).
-</Paragraph>
+                <ProjectTitle>Novel Moldable, Ventilated Violin Chinrest</ProjectTitle>
+                <Paragraph>Invented a novel moldable, ventilated violin chinrest. Dramatically improves comfort from "one-size-fits-all" wood or plastic solutions. Ventilated by design, prevents sweat buildup under jaw. Infinitely remoldable.  </Paragraph>
                 <BubbleDiv>
-                  <KeywordBubble>Computer Vision</KeywordBubble>
-                  <KeywordBubble>Software Development</KeywordBubble>
-                  <KeywordBubble>3D Slicer</KeywordBubble>
-                  <KeywordBubble>Robotics</KeywordBubble>
+                  <KeywordBubble>Material Dynamics</KeywordBubble>
+                  <KeywordBubble>3D Printing</KeywordBubble>
+                  <KeywordBubble>Procedural Modeling</KeywordBubble>
+                  <KeywordBubble>Python</KeywordBubble>
                 </BubbleDiv>
               </LeftCol>
               <RightCol>
                 <ImageWrapper>
-                  <ProjectImage src={kidney}/>
-                </ImageWrapper>
-              </RightCol>
-            </Row>
-            <Row onClick={() => window.open('https://apps.apple.com/us/app/focus-interval-timer/id6443711772', '_blank')}>
-              <PlusSign>+</PlusSign>
-              <LeftCol>
-                <ProjectTitle>Interval Timer App on AppStore (for iPhone)</ProjectTitle>
-                <Paragraph>Created a minimalist timer with over 1.5k downloads that sends reminder notifications on a set interval over a chosen time period. Designed to be used optionally with Apple Focus.
-</Paragraph>
-                <BubbleDiv>
-                  <KeywordBubble>Software Development</KeywordBubble>
-                  <KeywordBubble>Swift</KeywordBubble>
-                </BubbleDiv>
-              </LeftCol>
-              <RightCol>
-                <ImageWrapper>
-                  <ProjectImage src={appImg} alt="E-commerce Platform" />
+                  <ProjectImage src={chinrestImg}/>
                 </ImageWrapper>
               </RightCol>
             </Row>

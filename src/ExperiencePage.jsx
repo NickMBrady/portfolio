@@ -40,13 +40,10 @@ export default function ExperiencePage() {
             <Row>
               <Column70>
                 <ExperienceTitle>Software Engineering Intern at Specialty Materials, Inc.</ExperienceTitle>
-                <ExperienceDate>June 2024 - present (now virtual)</ExperienceDate>
-                <Paragraph>Implemented a state-of-the-art diffusion-based edge detection model to create automated boron grain segmentation and 
-statistical characterization software</Paragraph>
-                <Paragraph>Built software with a fully featured GUI for the automatic segmentation and statistical characterization of boron, tungsten, 
-carbon, and polymer from cross-sectional images of a composite material. </Paragraph>
-                <Paragraph>Implemented a multi-output random forest regressor to predict material properties of boron-carbon composites, trained on 
-a dataset generated through scripting Ansys Mechanical. Characterized samples with optical and SEM microscopes.  </Paragraph>
+                <ExperienceDate>June - October 2024</ExperienceDate>
+                <Paragraph>Implemented a multi-output random forest regressor to predict material properties of boron-carbon composites, trained on a dataset generated through scripting Ansys Mechanical. Gave efficacy insights into untested composite combinations.  </Paragraph>
+                <Paragraph>Implemented a state-of-the-art diffusion-based edge detection model to create automated boron grain segmentation and statistical characterization software. Reduced a 2-hour segmentation task to 10 minutes with 1.7% increase in accuracy.s</Paragraph>
+                <Paragraph>Built software with a fully featured GUI for the automatic segmentation and statistical characterization of boron, tungsten, carbon, and polymer from cross-sectional images of a composite material. Decreased sample characterization time by 2x.</Paragraph>
               </Column70>
               <Column30>
                 
@@ -55,7 +52,7 @@ a dataset generated through scripting Ansys Mechanical. Characterized samples wi
             <Row>
               <Column70>
                 <ExperienceTitle>Research Intern at Harvard Surgical Navigation and Robotics Lab</ExperienceTitle>
-                <ExperienceDate>Summer 2024</ExperienceDate>
+                <ExperienceDate>Summer 2023</ExperienceDate>
                 <Paragraph>Created an open-source 3D Slicer extension for the detection of and two-stage navigation toward kidney stones using a 
 robotic ureteroscope. During gross guidance, preliminary targets are identified with hue, stabilized through temporal 
 averaging, and validated with K-means grouping. Then, during fine guidance, a hue-and-lightness based region growing 

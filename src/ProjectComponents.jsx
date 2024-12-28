@@ -109,3 +109,10 @@ export const SliderImage = styled.img`
   width: 100%;
   object-fit: cover;
 `
+
+export const HCenter = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  `

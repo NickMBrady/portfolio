@@ -41,21 +41,18 @@ export default function AboutPage() {
           <DescriptionSection>
             <Section>
               <RoundedImage src={headshotImg} alt="Headshot" />
-              <AboutHeaderText> Hi! I’m a student at Duke University interested in machine learning, software development, and biomedical engineering.
+              <AboutHeaderText> Hi, I’m a student at Duke University passionate about material dynamics, additive manufacturing, and control systems. 
               </AboutHeaderText>
             </Section>
             <DescriptionText>
-              Thank you so much for taking the time to visit my website! I'm from Massachusetts, and it
-              was in our garage and basement that I got my start with engineering. I was fascinated that with
-              only a 3D printer and some tools I had the capacity to solve real problems. My longest-running
-              project, moldable and procedural prosthetic and orthotic devices, got its start then when I set out to make a
+              
+              It was in our garage and basement that I got my start with engineering. I was fascinated that with
+              only a 3D printer and basic tools I had the capacity to solve real problems for those around me. My longest-running
+              project, moldable and algorithmically generated prosthetic and orthotic devices, got its start then when I set out to make a
               better shoe insert for my brother, a limb-length discrepancy patient.
               <br /><br />
-              Over the years I steadily gravitated toward computer science exclusively, particularly machine learning.
-              Working with computers grants me the same problem-solving power as in the real world, but is innately
-              less restrained. With more freedom comes more ability, and unlike the physical world, I have never once
-              sat in front of a computer and felt there was something I physically could not do. It is this passion,
-              combined with an extremely high standard for my work, that I believe sets me apart.
+              All these years later, engineering&apos;s power to create, change, and improve has only grown stronger in my eyes. 
+              It is this passion, combined with an extremely high standard for my work, that I believe sets me apart.
               <br /><br />
               The 'Projects' section features a tour of my favorite work over the years. For more information, including
               instructions, files, code, and everything else, please visit the Github repository link for each.
@@ -131,7 +128,7 @@ const DescriptionSection = styled.div`
 
 const DescriptionText = styled.p`
   margin-top: 50px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 200;
   padding: 30px;
   line-height: 1.5;

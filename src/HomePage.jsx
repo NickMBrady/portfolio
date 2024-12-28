@@ -48,7 +48,7 @@ export default function HomePage(){
             </SplineWrapper>
           </ImageSection>
           <DescriptionSection>
-            <DescriptionText> Hi, I&apos;m a student at <strong>Duke University</strong> interested in <strong>machine learning, software development, and biomedical engineering.</strong> </DescriptionText>
+            <DescriptionText> Hi, I&apos;m a student at <strong>Duke University</strong> passionate about <strong>material dynamics, additive manufacturing, and control systems.</strong> </DescriptionText>
           </DescriptionSection>
           <LowerLeftSection onClick={() => navigate('/projects')}>
             <ProjectSection>
