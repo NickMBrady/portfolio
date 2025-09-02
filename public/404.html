@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Extract the pathname from the current URL
+      var pathname = window.location.pathname;
+
+      // Define a mapping of clean URLs to their hash-based counterparts
+      var redirectMap = {
+        '/portfolio/projects/cardiacsimulator': '/portfolio/#/projects/cardiacsimulator',
+        // Add additional mappings as needed
+      };
+
+      // Check if the current pathname exists in the redirect map
+      if (redirectMap.hasOwnProperty(pathname)) {
+        // Redirect to the corresponding hash-based URL
+        window.location.replace(redirectMap[pathname]);
+      } else {
+        // Redirect to the root or a default page if no match is found
+        window.location.replace('/portfolio/');
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>

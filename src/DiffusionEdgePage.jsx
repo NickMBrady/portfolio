@@ -13,7 +13,7 @@ import diffEdgeImg from "/assets/diffEdge/diffusionEdge.png";
 export default function DiffusionEdgePage() {
 
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
       <GlobalStyle />
       <Nav>
         <NavLogoSection>
@@ -80,7 +80,7 @@ export default function DiffusionEdgePage() {
           </Paragraph>
         </ContentContainer>
       </Main>
-    </>
+    </div>
   );
 }
 

@@ -49,21 +49,38 @@ export default function ProjectsPage() {
             <BoldTitle>Projects</BoldTitle>
           </ProjectsSection>
           <ContentSection>
-            <Row onClick={() => navigate('/projects/cardiacsimulator')}>
+            <Row onClick={() => navigate('/projects/electromagnetic3dprinting')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
-                <ProjectTitle>Cardiac Simulator Capable of Controlled Pulsatile Flow</ProjectTitle>
-                <Paragraph>Engineered the hardware solution for an anatomically accurate fluid pump system, satisfying pressure and flow rate criteria with simulated "heart beats": periodic modulations in flow pressure and velocity (pulsatile flow). </Paragraph>
+                <ProjectTitle>Enhancing FDM 3D Printing with Electromagnetic Control</ProjectTitle>
+                <Paragraph>Developed a software and hardware system to actively predict and cancel system vibrations, eliminating print artifacts using rapid electromagnetic actuation to produce inverse vibrations in the extruder. Created workflow employing high-frequency electromagnetic pulses to create fine surface patterns on printed objects, achieving an aesthetic texture that hides print layer lines without sacrificing dimensional accuracy, material overuse, or print time.</Paragraph>
                 <BubbleDiv>
                   <KeywordBubble>3D Printing</KeywordBubble>
+                  <KeywordBubble>Electronics and Microcontrollers</KeywordBubble>
+                  <KeywordBubble>Procedural Modeling</KeywordBubble>
                   <KeywordBubble>C++</KeywordBubble>
-                  <KeywordBubble>Arduino</KeywordBubble>
-                  <KeywordBubble>Fluid Dynamics</KeywordBubble>
                 </BubbleDiv>
               </LeftCol>
               <RightCol>
                 <ImageWrapper>
-                  <ProjectImage src={cardiacImg}/>
+                  <ProjectImage src={img3d}/>
+                </ImageWrapper>
+              </RightCol>
+            </Row>
+            <Row onClick={() => navigate('/projects/diffusionedge')}>
+              <PlusSign>+</PlusSign>
+              <LeftCol>
+                <ProjectTitle>Diffusion Probabilistic Model Based Boron Grain Detection</ProjectTitle>
+                <Paragraph>Implemented a state-of-the-art diffusion-based edge detection model to create automated boron grain segmentation and statistical characterization software.</Paragraph>
+                <BubbleDiv>
+                  <KeywordBubble>Convolutional Neural Networks</KeywordBubble>
+                  <KeywordBubble>Software Development</KeywordBubble>
+                  <KeywordBubble>Computer Vision</KeywordBubble>
+                </BubbleDiv>
+              </LeftCol>
+              <RightCol>
+                <ImageWrapper>
+                  <ProjectImage src={diffImg}/>
                 </ImageWrapper>
               </RightCol>
             </Row>
@@ -85,21 +102,57 @@ export default function ProjectsPage() {
                 </ImageWrapper>
               </RightCol>
             </Row>
-            <Row onClick={() => navigate('/projects/electromagnetic3dprinting')}>
+            <Row onClick={() => navigate('/projects/kidneystonenavigation')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
-                <ProjectTitle>Enhancing FDM 3D Printing with Electromagnetic Control</ProjectTitle>
-                <Paragraph>Developed a software and hardware system to actively predict and cancel system vibrations, eliminating print artifacts using rapid electromagnetic actuation to produce inverse vibrations in the extruder. Created workflow employing high-frequency electromagnetic pulses to create fine surface patterns on printed objects, achieving an aesthetic texture that hides print layer lines without sacrificing dimensional accuracy, material overuse, or print time.</Paragraph>
+                <ProjectTitle>Kidney Stone Removal via Autonomous Aiming of a Robotic Ureteroscope during Laser Lithotripsy</ProjectTitle>
+                <Paragraph>Created an open-source 3D Slicer extension for the detection of and two-stage navigation toward kidney stones using a robotic ureteroscope. During gross guidance, preliminary targets are identified with hue, stabilized through temporal averaging, and validated with K-means grouping. Then, during fine guidance, a hue-and-lightness based region growing algorithm accurately segments stones in preparation for laser lithotripsy (ablation).
+                </Paragraph>
                 <BubbleDiv>
-                  <KeywordBubble>3D Printing</KeywordBubble>
-                  <KeywordBubble>Electronics and Microcontrollers</KeywordBubble>
-                  <KeywordBubble>Procedural Modeling</KeywordBubble>
-                  <KeywordBubble>C++</KeywordBubble>
+                  <KeywordBubble>Computer Vision</KeywordBubble>
+                  <KeywordBubble>Software Development</KeywordBubble>
+                  <KeywordBubble>3D Slicer</KeywordBubble>
+                  <KeywordBubble>Robotics</KeywordBubble>
                 </BubbleDiv>
               </LeftCol>
               <RightCol>
                 <ImageWrapper>
-                  <ProjectImage src={img3d}/>
+                  <ProjectImage src={kidney}/>
+                </ImageWrapper>
+              </RightCol>
+            </Row>
+            <Row onClick={() => navigate('/projects/cardiacsimulator')}>
+              <PlusSign>+</PlusSign>
+              <LeftCol>
+                <ProjectTitle>Cardiac Simulator Capable of Controlled Pulsatile Flow</ProjectTitle>
+                <Paragraph>Engineered the hardware solution for an anatomically accurate fluid pump system, satisfying pressure and flow rate criteria with simulated "heart beats": periodic modulations in flow pressure and velocity (pulsatile flow). </Paragraph>
+                <BubbleDiv>
+                  <KeywordBubble>3D Printing</KeywordBubble>
+                  <KeywordBubble>C++</KeywordBubble>
+                  <KeywordBubble>Arduino</KeywordBubble>
+                  <KeywordBubble>Fluid Dynamics</KeywordBubble>
+                </BubbleDiv>
+              </LeftCol>
+              <RightCol>
+                <ImageWrapper>
+                  <ProjectImage src={cardiacImg}/>
+                </ImageWrapper>
+              </RightCol>
+            </Row>
+            <Row onClick={() => navigate('/projects/compositeelementdetection')}>
+              <PlusSign>+</PlusSign>
+              <LeftCol>
+                <ProjectTitle>Composite Element Detection</ProjectTitle>
+                <Paragraph>Fully featured GUI for the automatic segmentation and statistical characterization of boron, tungsten, carbon, and polymer from cross-sectional images of a composite material.</Paragraph>
+                <BubbleDiv>
+                  <KeywordBubble>Software Development</KeywordBubble>
+                  <KeywordBubble>Graphical User Interface</KeywordBubble>
+                  <KeywordBubble>Computer Vision</KeywordBubble>
+                </BubbleDiv>
+              </LeftCol>
+              <RightCol>
+                <ImageWrapper>
+                  <ProjectImage src={CEDImg}/>
                 </ImageWrapper>
               </RightCol>
             </Row>

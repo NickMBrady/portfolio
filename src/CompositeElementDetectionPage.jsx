@@ -16,7 +16,7 @@ import GUIssImg from "/assets/CED/GUIss.png";
 export default function OrthoticProstheticPage() {
 
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
       <GlobalStyle />
       <Nav>
         <NavLogoSection>
@@ -48,7 +48,7 @@ export default function OrthoticProstheticPage() {
           <BubbleDiv>
             <GithubBubble onClick={() => window.open('https://github.com/SpecialtyMaterials/Composite-Element-Detection', '_blank')}>
               Github
-              <a href="https://github.com/nickmbrady" target="_blank" rel="noopener noreferrer" style={{ paddingLeft: '10px' }}>
+              <a href="https://github.com/SpecialtyMaterials/Composite-Element-Detection" target="_blank" rel="noopener noreferrer" style={{ paddingLeft: '10px' }}>
                 <FontAwesomeIcon icon={faGithub} size="1x" />
               </a>
             </GithubBubble>
@@ -98,7 +98,7 @@ export default function OrthoticProstheticPage() {
           </Paragraph>
         </ContentContainer>
       </Main>
-    </>
+    </div>
   );
 }
 

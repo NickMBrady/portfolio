@@ -19,7 +19,7 @@ export default function KidneyPage() {
 
 
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
       <GlobalStyle />
       <Nav>
         <NavLogoSection>
@@ -62,7 +62,7 @@ I created an open-source 3D Slicer extension for the detection of and two-stage 
           </PdfContainer>
         </ContentContainer>
       </Main>
-    </>
+    </div>
   );
 }
 

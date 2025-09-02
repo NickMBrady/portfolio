@@ -6,7 +6,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } from './NavBarComponent';
 import logoImg from "/assets/nb-logo.png";
 
-import headshotImg from "/assets/headshot.png";
+import headshotImg from "/assets/headshot.jpg";
 
 export default function AboutPage() {
   return (
@@ -40,7 +40,7 @@ export default function AboutPage() {
           </AboutSection>
           <DescriptionSection>
             <Section>
-              <RoundedImage src={headshotImg} alt="Headshot" />
+              <RoundedImage src={headshotImg} alt="Headshot.jpg" />
               <AboutHeaderText> Hi, I’m a student at Duke University passionate about material dynamics, additive manufacturing, and control systems. 
               </AboutHeaderText>
             </Section>
