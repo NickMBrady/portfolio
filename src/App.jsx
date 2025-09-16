@@ -11,6 +11,8 @@ import EM3DPPage from './EM3DPPage';
 import KidneyPage from './KidneyPage';
 import CardiacPage from './CardiacPage';
 import ChinrestPage from './ChinrestPage';
+import FlexurePage from './FlexurePage';
+import LinearStagePage from './LinearStagePage';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path='/projects/kidneystonenavigation' element={<KidneyPage />} />
         <Route path='/projects/cardiacsimulator' element={<CardiacPage />} />
         <Route path='/projects/chinrest' element={<ChinrestPage />} />
+        <Route path='/projects/flexure' element={<FlexurePage />} />
+        <Route path='/projects/linearstage' element={<LinearStagePage />} />
       </Routes>
   );
 }

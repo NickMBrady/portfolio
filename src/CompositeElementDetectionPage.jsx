@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image } from './ProjectComponents';
 
 import logoImg from "/assets/nb-logo.png";
-import GUIssImg from "/assets/CED/GUIss.png";
+import GUIssImg from "/assets/CED/hero.png";
 export default function OrthoticProstheticPage() {
 
   return (
@@ -46,12 +46,6 @@ export default function OrthoticProstheticPage() {
             Fully featured GUI for the automatic segmentation and statistical characterization of boron, tungsten, carbon, and polymer from cross-sectional images of a composite material.
           </Paragraph>
           <BubbleDiv>
-            <GithubBubble onClick={() => window.open('https://github.com/SpecialtyMaterials/Composite-Element-Detection', '_blank')}>
-              Github
-              <a href="https://github.com/SpecialtyMaterials/Composite-Element-Detection" target="_blank" rel="noopener noreferrer" style={{ paddingLeft: '10px' }}>
-                <FontAwesomeIcon icon={faGithub} size="1x" />
-              </a>
-            </GithubBubble>
             <KeywordBubble>Software Development</KeywordBubble>
             <KeywordBubble>Graphical User Interface</KeywordBubble>
             <KeywordBubble>Computer Vision</KeywordBubble>
@@ -61,7 +55,10 @@ export default function OrthoticProstheticPage() {
             Overview
           </SubHeading>
           <Paragraph>
-            I developed this software for my position at Specialty Materials, inc. A critical element for the characterization of composite materials is the percentage of the material that each distinct element occupies. This can be efficiently accomplished by viewing cross sections of the material under a microscope, at which point the elements can be manually identified. 
+            I developed this software during my two years at Specialty Materials, inc. It is currently being used for internal R&D and 
+            will soon be licensed to some of our collaborators. 
+            <br /> <br />
+            A critical element for the characterization of composite materials is the percentage of the material that each distinct element occupies. This can be efficiently accomplished by viewing cross sections of the material under a microscope, at which point the elements can be manually identified. 
           </Paragraph>
           <Paragraph>
             I was tasked to build software with a fully-featured GUI that, given a composite cross sectional image, automatically identifies different elements for characterization. The computer vision logic is described below. I used OpenCV for image processing and Python to package the software into an executable. 
@@ -89,12 +86,6 @@ export default function OrthoticProstheticPage() {
           </SubHeading>
           <Paragraph>
             BTP operation is similar to BCP. Boron and tungsten are grouped identified and validated with the same circle and thresholding logic. To separate boron from tungsten, a subtle hue difference is used. The remaining polymer is thresholded, and the image is returned to the user for optional correction. Using a mouse, tungsten fibers or fragments that have been mischaracterized as boron are identified. The algorithm runs a second time with these data, and the final detection is produced.
-          </Paragraph>
-          <SubHeading>
-            Usage
-          </SubHeading>
-          <Paragraph>
-          For instructions on downloading and usage, please refer to the Github linked above. 
           </Paragraph>
         </ContentContainer>
       </Main>

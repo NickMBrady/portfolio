@@ -58,7 +58,7 @@ export default function DiffusionEdgePage() {
           Overview
           </SubHeading>
           <Paragraph>
-            I developed this software for my position at Specialty Materials, inc. A critical element for the characterization of metallic fibers is the size and shape of the cells that compose it. This can be efficiently observed by viewing the fiber under high magnification, at which point the cells can be manually identified. 
+            I developed this software during my 2024 internship at Specialty Materials, inc. A critical element for the characterization of metallic fibers is the size and shape of the cells that compose it. This can be efficiently observed by viewing the fiber under high magnification, at which point the cells can be manually identified. 
           </Paragraph>
           <Paragraph>
             I was tasked to build software that, given an input image of a metallic fiber, could automatically characterize the size and shape of each cell. I accomplished this by training an edge detection algorithm on a custom dataset, then packaging the model into an algorithm that cleans the results, allows for fast manual correction of misidentifed cells, and generates data based on the detection results. 

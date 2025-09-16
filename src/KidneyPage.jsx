@@ -9,7 +9,7 @@ import { BubbleDiv, KeywordBubble } from './Bubbles';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import {Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, PdfContainer } from './ProjectComponents';
+import {Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, YouTubeContainer, PdfContainer } from './ProjectComponents';
 
 import PdfViewer from './PdfViewer';
 import logoImg from "/assets/nb-logo.png";
@@ -55,8 +55,23 @@ export default function KidneyPage() {
 I created an open-source 3D Slicer extension for the detection of and two-stage navigation toward kidney stones using a robotic ureteroscope. During gross guidance, preliminary targets are identified with hue, stabilized through temporal averaging, and validated with K-means grouping. Then, during fine guidance, a hue-and-lightness based region growing algorithm accurately segments stones in preparation for laser lithotripsy (ablation). Software devlopment was done using the 3D Slicer Python API, and OpenCV was used for computer vision. 
           </Paragraph>
           <Paragraph>
-          I completed this work during a 10-week internship at the Harvard SNR Lab under the guidance of Professor Nobuhiko Hata. 
+          I completed this work during a 10-week internship at the Harvard SNR Lab under the guidance of Professor Nobuhiko Hata.
           </Paragraph>
+          <SubHeading>
+            Demo Video
+          </SubHeading>
+          <YouTubeContainer>
+            <iframe
+              src="https://www.youtube.com/embed/_72YArMZDpo?mute=1"
+              title="Autonomous Kidney Stone Detection and Guidance"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </YouTubeContainer>
+          <SubHeading >
+            <br /> <br />
+            Paper
+          </SubHeading>
           <PdfContainer>
             <PdfViewer fileUrl={pdfUrl}/>
           </PdfContainer>

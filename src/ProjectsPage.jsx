@@ -16,6 +16,8 @@ import kidney from "/assets/kidney/hero2.webp";
 import appImg from "/assets/intervalTimer/hero.jpg";
 import cardiacImg from "/assets/cardiac/main.jpeg";
 import chinrestImg from "/assets/chinrest/chinrest.jpg";
+import flexureImg from "/assets/flexure/flexure.png";
+import linearStageImg from "/assets/linearStage/linearStage.png";
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
@@ -49,6 +51,26 @@ export default function ProjectsPage() {
             <BoldTitle>Projects</BoldTitle>
           </ProjectsSection>
           <ContentSection>
+            <Row onClick={() => navigate('/projects/flexure')}>
+              <PlusSign>+</PlusSign>
+              <LeftCol>
+                <ProjectTitle>Ultra-High Precision Compliant Linear Stage</ProjectTitle>
+                <Paragraph>Designed a PEEK compliant mechanism to drive an ultra high-precision linear stage on a manufacturing line. Used
+topological optimization to produce a constant, perpendicular output speed given a constant input speed.
+Simulated fatigue, stress, and stiffness before ordering part machining and supervising assembly.</Paragraph>
+                <BubbleDiv>
+                  <KeywordBubble>Altair Hyperworks</KeywordBubble>
+                  <KeywordBubble>Topology Optimization</KeywordBubble>
+                  <KeywordBubble>Finite Element Analysis</KeywordBubble>
+                  <KeywordBubble>Material Dynamics</KeywordBubble>
+                </BubbleDiv>
+              </LeftCol>
+              <RightCol>
+                <ImageWrapper>
+                  <ProjectImage src={flexureImg}/>
+                </ImageWrapper>
+              </RightCol>
+            </Row>
             <Row onClick={() => navigate('/projects/electromagnetic3dprinting')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
@@ -67,20 +89,21 @@ export default function ProjectsPage() {
                 </ImageWrapper>
               </RightCol>
             </Row>
-            <Row onClick={() => navigate('/projects/diffusionedge')}>
+            <Row onClick={() => navigate('/projects/cardiacsimulator')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
-                <ProjectTitle>Diffusion Probabilistic Model Based Boron Grain Detection</ProjectTitle>
-                <Paragraph>Implemented a state-of-the-art diffusion-based edge detection model to create automated boron grain segmentation and statistical characterization software.</Paragraph>
+                <ProjectTitle>Cardiac Simulator Capable of Controlled Pulsatile Flow</ProjectTitle>
+                <Paragraph>Engineered the hardware solution for an anatomically accurate fluid pump system, satisfying pressure and flow rate criteria with simulated "heart beats": periodic modulations in flow pressure and velocity (pulsatile flow). </Paragraph>
                 <BubbleDiv>
-                  <KeywordBubble>Convolutional Neural Networks</KeywordBubble>
-                  <KeywordBubble>Software Development</KeywordBubble>
-                  <KeywordBubble>Computer Vision</KeywordBubble>
+                  <KeywordBubble>3D Printing</KeywordBubble>
+                  <KeywordBubble>C++</KeywordBubble>
+                  <KeywordBubble>Arduino</KeywordBubble>
+                  <KeywordBubble>Fluid Dynamics</KeywordBubble>
                 </BubbleDiv>
               </LeftCol>
               <RightCol>
                 <ImageWrapper>
-                  <ProjectImage src={diffImg}/>
+                  <ProjectImage src={cardiacImg}/>
                 </ImageWrapper>
               </RightCol>
             </Row>
@@ -99,6 +122,23 @@ export default function ProjectsPage() {
               <RightCol>
                 <ImageWrapper>
                   <ProjectImage src={orthoticImg}/>
+                </ImageWrapper>
+              </RightCol>
+            </Row>
+            <Row onClick={() => navigate('/projects/compositeelementdetection')}>
+              <PlusSign>+</PlusSign>
+              <LeftCol>
+                <ProjectTitle>Composite Element Detection</ProjectTitle>
+                <Paragraph>Fully featured GUI for the automatic segmentation and statistical characterization of boron, tungsten, carbon, and polymer from cross-sectional images of a composite material.</Paragraph>
+                <BubbleDiv>
+                  <KeywordBubble>Software Development</KeywordBubble>
+                  <KeywordBubble>Graphical User Interface</KeywordBubble>
+                  <KeywordBubble>Computer Vision</KeywordBubble>
+                </BubbleDiv>
+              </LeftCol>
+              <RightCol>
+                <ImageWrapper>
+                  <ProjectImage src={CEDImg}/>
                 </ImageWrapper>
               </RightCol>
             </Row>
@@ -121,41 +161,27 @@ export default function ProjectsPage() {
                 </ImageWrapper>
               </RightCol>
             </Row>
-            <Row onClick={() => navigate('/projects/cardiacsimulator')}>
+            <Row onClick={() => navigate('/projects/diffusionedge')}>
               <PlusSign>+</PlusSign>
               <LeftCol>
-                <ProjectTitle>Cardiac Simulator Capable of Controlled Pulsatile Flow</ProjectTitle>
-                <Paragraph>Engineered the hardware solution for an anatomically accurate fluid pump system, satisfying pressure and flow rate criteria with simulated "heart beats": periodic modulations in flow pressure and velocity (pulsatile flow). </Paragraph>
+                <ProjectTitle>Diffusion Probabilistic Model Based Boron Grain Detection</ProjectTitle>
+                <Paragraph>Implemented a state-of-the-art diffusion-based edge detection model to create automated boron grain segmentation and statistical characterization software.</Paragraph>
                 <BubbleDiv>
-                  <KeywordBubble>3D Printing</KeywordBubble>
-                  <KeywordBubble>C++</KeywordBubble>
-                  <KeywordBubble>Arduino</KeywordBubble>
-                  <KeywordBubble>Fluid Dynamics</KeywordBubble>
-                </BubbleDiv>
-              </LeftCol>
-              <RightCol>
-                <ImageWrapper>
-                  <ProjectImage src={cardiacImg}/>
-                </ImageWrapper>
-              </RightCol>
-            </Row>
-            <Row onClick={() => navigate('/projects/compositeelementdetection')}>
-              <PlusSign>+</PlusSign>
-              <LeftCol>
-                <ProjectTitle>Composite Element Detection</ProjectTitle>
-                <Paragraph>Fully featured GUI for the automatic segmentation and statistical characterization of boron, tungsten, carbon, and polymer from cross-sectional images of a composite material.</Paragraph>
-                <BubbleDiv>
+                  <KeywordBubble>Convolutional Neural Networks</KeywordBubble>
                   <KeywordBubble>Software Development</KeywordBubble>
-                  <KeywordBubble>Graphical User Interface</KeywordBubble>
                   <KeywordBubble>Computer Vision</KeywordBubble>
                 </BubbleDiv>
               </LeftCol>
               <RightCol>
                 <ImageWrapper>
-                  <ProjectImage src={CEDImg}/>
+                  <ProjectImage src={diffImg}/>
                 </ImageWrapper>
               </RightCol>
             </Row>
+            
+            
+            
+            
             <Row onClick={() => navigate('/projects/chinrest')}>
               <PlusSign>+</PlusSign>
               <LeftCol>

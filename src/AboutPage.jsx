@@ -41,7 +41,7 @@ export default function AboutPage() {
           <DescriptionSection>
             <Section>
               <RoundedImage src={headshotImg} alt="Headshot.jpg" />
-              <AboutHeaderText> Hi, I’m a student at Duke University passionate about material dynamics, additive manufacturing, and control systems. 
+              <AboutHeaderText> Hi, I’m a student at Duke University passionate about material dynamics, additive manufacturing, and optimization. 
               </AboutHeaderText>
             </Section>
             <DescriptionText>

@@ -79,6 +79,31 @@ export const Image = styled.img`
     margin-top: 30px;
   }
 `
+
+export const YouTubeContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+  margin-top: 40px;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+
+  @media (max-width: 800px) {
+    margin-top: 30px;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+  }
+`
   
 export const PdfContainer = styled.div`
   padding-top: 50px;
@@ -116,3 +141,50 @@ export const HCenter = styled.div`
   flex-direction: row;
   justify-content: center;
   `
+
+export const TableContainer = styled.div`
+  padding-top: 40px;
+  margin: 30px 0px;
+  overflow-x: auto;
+`;
+
+export const MinimalTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  max-width: 1000px;
+`;
+
+export const TableHeader = styled.th`
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--dividing-line);
+  font-weight: 500;
+  color: var(--light-gray);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+`;
+
+export const TableCell = styled.td`
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(48, 63, 77, 0.2);
+  color: var(--light-gray);
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 2.0;
+
+  &:first-child {
+    font-weight: 500;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+`;
