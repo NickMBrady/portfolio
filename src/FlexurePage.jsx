@@ -69,7 +69,7 @@ Simulated fatigue, stress, and stiffness before ordering part machining and supe
             This behavior would have been unacceptable for this high-precision application.
 
             <br />  <br />
-           <b>My primary task, then, was to design a geometry that would be able to, within my ROM, produce constant output speed given constant input speed..</b>
+           <b>My primary task, then, was to design a geometry that would be able to, within my ROM, produce constant output speed given constant input speed.</b>
           </Paragraph>
           <SubHeading>
           Topology Optimization

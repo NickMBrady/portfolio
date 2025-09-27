@@ -95,8 +95,19 @@ const WideNavLinkSection = styled(NavLinkSection)`
 `
 const Main = styled.div`
   flex-grow: 1;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 200px);
   overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  scrollbar-color: var(--dividing-line) var(--background); /* Firefox */
+  overflow-x: hidden;
+
+  @media (max-width: 800px) {
+    height: calc(100vh - 120px);
+  }
+
+  @media (max-width: 576px) {
+    height: calc(100vh - 75px);
+  }
 `;
 
 const MainGrid = styled.div`

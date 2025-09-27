@@ -270,6 +270,9 @@ const ContentSection = styled.div`
   justify-content: flex-start; /* Push items to the top */
   border-left: 0.5px solid var(--dividing-line);
   border-bottom: 0.5px solid var(--dividing-line);
+  position: relative; /* establish clipping context */
+  overflow-x: hidden; /* keep left reveal under Projects bar until slide */
+  overflow-y: visible; /* allow vertical overflow for scrolling */
 
   @media (max-width: 576px) {
     padding-bottom: 100px;
@@ -378,19 +381,7 @@ const BoldTitle = styled.a`
 `;
 
 const PlusSign = styled.div`
-  position: absolute;
-  left: 0px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 30px;
-  color: var(--light-gray);
-  pointer-events: none;
-
-  @media (max-width: 768px) {
-    display: none; /* Hide the plus sign on mobile devices */
-  }
+  display: none;
 `;
 
 const Row = styled.div`
@@ -402,12 +393,25 @@ const Row = styled.div`
   position: relative;
   cursor: pointer;
 
-  &:hover {
-    transform: translateX(30px);
+  /* Light blue reveal column with centered plus, revealed when row shifts right */
+  &::before {
+    content: "+";
+    position: absolute;
+    left: -30px; /* hidden until row translates right */
+    top: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #a2aebe; /* reuse site light blue */
+    color: var(--background-color); /* plus uses site background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    pointer-events: none;
   }
 
-  &:hover ${PlusSign} {
-    opacity: 1;
+  &:hover {
+    transform: translateX(30px);
   }
 
   @media (max-width: 768px) {
@@ -415,9 +419,8 @@ const Row = styled.div`
     &:hover {
       transform: none;
     }
-
-    &:hover ${PlusSign} {
-      opacity: 0;
+    &::before {
+      display: none; /* hide reveal column on mobile */
     }
   }
 `;
