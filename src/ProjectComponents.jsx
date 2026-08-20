@@ -1,16 +1,24 @@
 import styled from 'styled-components';
+import { glassPanel, glassSurface, PANEL_RADIUS_SM } from './glass';
 
-export const SliderContainer = styled.div` 
+export const SliderContainer = styled.div`
   padding: 0px 20px;
   padding-bottom: 30px;
 `
 
+/* The scroll area for a project page: body is overflow:hidden, so this is the
+   box that scrolls. The nav is a floating panel now, so its top margin has to
+   come out of the height as well or the last rows are clipped. */
 export const Main = styled.div`
   flex-grow: 1;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 100px - 9px); /* accounts for the floating nav's top margin */
   overflow-y: auto;
   scrollbar-width: none;
-  scrollbar-color: var(--dividing-line) var(--background); /* Firefox */
+  scrollbar-color: var(--dividing-line) transparent; /* Firefox */
+
+  @media (max-width: 576px) {
+    height: calc(100vh - 100px - 6px); /* accounts for the floating nav's top margin */
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -24,7 +32,7 @@ export const ContentContainer = styled.div`
   @media (max-width: 800px) {
     padding: 50px 15px;
   }
-  
+
   @media (max-width: 576px) {
     padding-bottom: 100px;
   }
@@ -36,7 +44,7 @@ export const BoldTitle = styled.a`
   transition: color 1s ease;
   padding-bottom: 40px;
   padding-right: 40px;
-  
+
   @media (max-width: 576px){
     font-size: 30px;
   }
@@ -51,8 +59,8 @@ export const BoldSubHeading = styled.p`
 export const SubHeading = styled.p`
     font-size: 20px;
     font-weight: 500;
-    padding-top: 30px; 
-    
+    padding-top: 30px;
+
     @media (max-width: 576px){
       padding-top: 0px;
     }
@@ -63,13 +71,18 @@ export const Paragraph = styled.p`
   font-weight: 200;
   line-height: 2.0;
   padding: 0px 0;
-  
+
   @media (max-width: 576px){
     font-size: 14px;
   }
 `;
 
+/* Media sits in the same glass frame as everything else. An img is a replaced
+   element, so it cannot carry the rim and grain pseudo-elements -- it takes
+   the surface alone, with border-box so the frame stays inside the column. */
 export const Image = styled.img`
+  ${glassSurface}
+  box-sizing: border-box;
   width: 100%;
   height: auto;
   margin: 20px 0;
@@ -78,17 +91,19 @@ export const Image = styled.img`
   @media (max-width: 800px) {
     margin-top: 30px;
   }
+
+  @media (max-width: 576px) {
+    border-radius: ${PANEL_RADIUS_SM}px;
+  }
 `
 
 export const YouTubeContainer = styled.div`
-  position: relative;
+  ${glassPanel}
   width: 100%;
   margin: 20px 0;
   margin-top: 40px;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
   height: 0;
-  overflow: hidden;
-  border-radius: 8px;
 
   @media (max-width: 800px) {
     margin-top: 30px;
@@ -101,20 +116,22 @@ export const YouTubeContainer = styled.div`
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 8px;
+    border-radius: inherit;
   }
 `
-  
+
 export const PdfContainer = styled.div`
   padding-top: 50px;
 `;
 
+/* The slider's frame: a full glass panel, so the photo reads as something
+   behind glass rather than a bare rectangle. */
 export const ImageSliderDiv = styled.div`
+  ${glassPanel}
   height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 
   @media (max-width: 1200px) {
     height: 600px;
@@ -173,7 +190,7 @@ export const TableHeader = styled.th`
 
 export const TableCell = styled.td`
   padding: 12px 15px;
-  border-bottom: 1px solid rgba(48, 63, 77, 0.2);
+  border-bottom: 1px solid var(--dividing-line);
   color: var(--light-gray);
   font-size: 16px;
   font-weight: 200;
