@@ -40,7 +40,8 @@ export const HOVER_ICON_FADE = HOVER_FADE;
 export const rootVars = css`
   --light-gray: #cdd6e0;
   --dividing-line: rgba(150, 178, 208, 0.14);
-  --background: #f5f5f5;
+  /* only consumed as a scrollbar track colour by the scrolling pages */
+  --background: #0a0f16;
   --glass-fill: linear-gradient(155deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.012) 45%, rgba(120, 150, 190, 0.025) 100%);
   --noise-size: ${NOISE_SIZE};
   --noise-image: ${NOISE_IMAGE};

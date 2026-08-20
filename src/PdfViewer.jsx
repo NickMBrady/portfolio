@@ -16,6 +16,7 @@ function PdfViewer({ fileUrl }) {
                 <Viewer
                     fileUrl={fileUrl}
                     plugins={[defaultLayoutPluginInstance]}
+                    theme="dark"
                 />
             </Worker>
         </div>
