@@ -1,9 +1,10 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, LogoBox, Logo, NBTitle, NavLinkSection, LinkBox } from './NavBarComponent';
+import GlassGlobalStyle from './GlassGlobalStyle';
 import { BubbleDiv, GithubBubble, KeywordBubble } from './Bubbles';
 
 import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image } from './ProjectComponents';
@@ -14,7 +15,7 @@ export default function DiffusionEdgePage() {
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
-      <GlobalStyle />
+      <GlassGlobalStyle />
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -84,31 +85,8 @@ export default function DiffusionEdgePage() {
   );
 }
 
-const GlobalStyle = createGlobalStyle`
-  :root {
-    --light-gray: #b7b7b7;
-    --dividing-line: #303f4d;
-    --background: #f5f5f5;
-  }
-
-  h1, h2, h3, a, p, span {
-    font-family: "Lexend Exa", sans-serif;
-    font-weight: 400;
-    color: var(--light-gray);
-  }
-
-  a {
-    font-size: 10pt;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  strong {
-    font-weight: 400;
-  }
-
-`;
-
+/* Layout-only widening of the shared nav link section; the glass treatment of
+   the nav itself comes from GlassGlobalStyle. */
 const WideNavLinkSection = styled(NavLinkSection)`
   flex-basis: 100%;
 `
