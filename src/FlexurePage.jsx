@@ -1,11 +1,12 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, LogoBox, Logo, NBTitle, NavLinkSection, LinkBox } from './NavBarComponent';
+import GlassGlobalStyle from './GlassGlobalStyle';
 import { BubbleDiv, KeywordBubble } from './Bubbles';
-import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, TableContainer, MinimalTable, TableHeader, TableCell } from './ProjectComponents';
+import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, TableContainer, MinimalTable as BaseMinimalTable, TableHeader, TableCell } from './ProjectComponents';
 import logoImg from "/assets/nb-logo.png";
 import flexureImg from "/assets/flexure/flexure.jpg";
 import graphImg from "/assets/flexure/graph.jpg";
@@ -13,7 +14,7 @@ import graphImg from "/assets/flexure/graph.jpg";
 export default function FlexurePage() {
   return (
     <>
-      <GlobalStyle />
+      <GlassGlobalStyle />
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -165,27 +166,15 @@ Simulated fatigue, stress, and stiffness before ordering part machining and supe
   );
 }
 
-const GlobalStyle = createGlobalStyle`
-  :root {
-    --light-gray: #b7b7b7;
-    --dividing-line: #303f4d;
-    --background: #f5f5f5;
-  }
-
-  h1, h2, h3, a, p, span, th, td {
+/* The page-level style this page used to mount named `th` and `td` alongside
+   the text tags, so the table picked up the site font from it. The shared
+   typography block covers h1-h3, a, p and span only, so the table asks for the
+   font here; its colour, weight, rules and spacing still come from
+   TableHeader and TableCell. */
+const MinimalTable = styled(BaseMinimalTable)`
+  th,
+  td {
     font-family: "Lexend Exa", sans-serif;
-    font-weight: 400;
-    color: var(--light-gray);
-  }
-
-  a {
-    font-size: 10pt;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  strong {
-    font-weight: 400;
   }
 `;
 
