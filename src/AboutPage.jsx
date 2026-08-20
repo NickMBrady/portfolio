@@ -1,9 +1,11 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } from './NavBarComponent';
+import GlassGlobalStyle from './GlassGlobalStyle';
+import GlassPanel from './GlassPanel';
 import logoImg from "/assets/nb-logo.png";
 
 import headshotImg from "/assets/headshot.jpg";
@@ -11,7 +13,7 @@ import headshotImg from "/assets/headshot.jpg";
 export default function AboutPage() {
   return (
     <>
-      <GlobalStyle />  {/* Apply global styles */}
+      <GlassGlobalStyle />
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -66,72 +68,61 @@ export default function AboutPage() {
   );
 }
 
-const GlobalStyle = createGlobalStyle`
-  :root {
-    --light-gray: #b7b7b7;
-    --dividing-line: #303f4d;
-    --background: #f5f5f5;
-  }
-
-  h1, h2, h3, a, p, span {
-    font-family: "Lexend Exa", sans-serif;
-    font-weight: 400;
-    color: var(--light-gray);
-  }
-
-  a {
-    font-size: 10pt;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  strong {
-    font-weight: 400;
-  }
-`;
-
 const WideNavLinkSection = styled(NavLinkSection)`
   flex-basis: 100%;
 `
 const Main = styled.div`
   flex-grow: 1;
-  height: calc(100vh - 200px);
+  /* The nav is a floating panel now, so its 9px top margin comes off the
+     scroll area as well as its own height. */
+  height: calc(100vh - 200px - 9px);
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
   scrollbar-color: var(--dividing-line) var(--background); /* Firefox */
   overflow-x: hidden;
 
   @media (max-width: 800px) {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 120px - 9px);
   }
 
   @media (max-width: 576px) {
-    height: calc(100vh - 75px);
+    height: calc(100vh - 75px - 6px); /* the nav's margin narrows here */
   }
 `;
 
 const MainGrid = styled.div`
   display: grid;
-  height: 100%;
+  /* min-height, not height: the glass panels below clip their overflow, so
+     the row has to grow to the full scrolled length instead of stopping at
+     one viewport. Short content still stretches to fill, as before. */
+  min-height: 100%;
+  box-sizing: border-box;
+  /* Lines the columns up with the floating nav's margins. */
+  padding: 9px 11px 12px;
   grid-template-columns: 10% 90%;
+
+  @media (max-width: 576px) {
+    padding: 6px 6px 12px;
+  }
 `;
 
-const AboutSection = styled.div`
+/* The two columns were drawn with hairline rules; as glass they become the
+   panels themselves. The 4px margins meet in the middle for a gutter the
+   width of the home page's bento gap. */
+const AboutSection = styled(GlassPanel)`
   display: flex;
   align-items: flex-start; /* Align items to the top */
   justify-content: center;
-  border-left: 0.5px solid var(--dividing-line);
-  border-bottom: 0.5px solid var(--dividing-line);
+  margin-right: 4px;
 `;
 
-const DescriptionSection = styled.div`
+const DescriptionSection = styled(GlassPanel)`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   /* justify-content: center; */
-  border-left: 0.5px solid var(--dividing-line);
-  border-bottom: 0.5px solid var(--dividing-line);
-  
+  margin-left: 4px;
+
   @media (max-width: 576px) {
     padding-bottom: 100px;
   }
@@ -143,7 +134,7 @@ const DescriptionText = styled.p`
   font-weight: 200;
   padding: 30px;
   line-height: 1.5;
-  
+
   @media (max-width: 576px) {
     font-size: 14px;
   }
@@ -175,20 +166,22 @@ const RoundedImage = styled.img`
   @media (max-width: 800px) {
     max-width: 40%;
   }
-  
+
   @media (max-width: 500px) {
     max-width: 100%;
     width: 100%;
   }
 `
 
+/* Kept as a hairline: inside a panel it reads as an internal divider rather
+   than a frame, and it picks up the new --dividing-line automatically. */
 const Section = styled.div`
   width: 100%;
   border-bottom: 0.5px solid var(--dividing-line);
   display: flex;
   flex-direction: row;
   align-items: center;
-  
+
   @media (max-width: 500px) {
     flex-direction: column;
   }
@@ -197,7 +190,7 @@ const Section = styled.div`
 const AboutHeaderText = styled(DescriptionText)`
   font-size: 25px;
   margin-bottom: 50px;
-  font-weight: 300; 
+  font-weight: 300;
   padding: 0px 80px;
 
   @media (max-width: 800px) {
