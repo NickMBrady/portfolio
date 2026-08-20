@@ -5,7 +5,7 @@ import styled from 'styled-components';
    :root; HomePage's CSS reads those, so edits apply live. Mounted behind
    import.meta.env.DEV, so it never ships in a production build. */
 
-const DEFAULTS = { scale: 610, black: 0.6, white: 0.8, bright: 1.0 };
+const DEFAULTS = { scale: 610, black: 0.6, white: 0.72, bright: 1.0 };
 
 // A Blender-style two-stop ramp: everything below `black` clamps to 0, above
 // `white` clamps to `bright` (the white stop's own brightness, 0..1). feFunc's

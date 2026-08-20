@@ -18,9 +18,9 @@ export const NOISE_IMAGE =
   `%3Cfilter id='n' color-interpolation-filters='sRGB'%3E` +
   `%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E` +
   `%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E` +
-  `%3CfeFuncR type='linear' slope='5.0000' intercept='-3.0000'/%3E` +
-  `%3CfeFuncG type='linear' slope='5.0000' intercept='-3.0000'/%3E` +
-  `%3CfeFuncB type='linear' slope='5.0000' intercept='-3.0000'/%3E` +
+  `%3CfeFuncR type='linear' slope='8.3333' intercept='-5.0000'/%3E` +
+  `%3CfeFuncG type='linear' slope='8.3333' intercept='-5.0000'/%3E` +
+  `%3CfeFuncB type='linear' slope='8.3333' intercept='-5.0000'/%3E` +
   `%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E` +
   `%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
@@ -30,12 +30,12 @@ export const HOVER_WASH =
   'linear-gradient(135deg, rgba(74, 159, 224, 0.92) 0%, rgba(70, 110, 215, 0.9) 55%, rgba(95, 124, 232, 0.92) 100%)';
 export const HOVER_INK = '#0a0f16';
 export const HOVER_FADE = '0.45s';
-// The other halves of the same hover. They are deliberately not all equal --
-// the title drifts, the icon turns faster than it recolours -- but they live
-// here so the spread is a choice rather than an accident.
-export const HOVER_TITLE_FADE = '1s';
+// The other halves of the same hover. The title tracks the wash exactly so the
+// tile and its label resolve together; the icon still turns a little slower
+// than it recolours, which reads as weight rather than lag.
+export const HOVER_TITLE_FADE = HOVER_FADE;
 export const HOVER_ICON_SPIN = '0.5s';
-export const HOVER_ICON_FADE = '0.4s';
+export const HOVER_ICON_FADE = HOVER_FADE;
 
 export const rootVars = css`
   --light-gray: #cdd6e0;
