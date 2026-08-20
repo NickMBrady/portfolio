@@ -9,7 +9,7 @@ import { BubbleDiv, KeywordBubble } from './Bubbles';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import {Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, YouTubeContainer, PdfContainer } from './ProjectComponents';
+import {Main, ContentContainer, BoldTitle, SubHeading, Paragraph, YouTubeContainer, PdfContainer } from './ProjectComponents';
 
 import PdfViewer from './PdfViewer';
 import logoImg from "/assets/nb-logo.png";

@@ -24,9 +24,9 @@ import smallSocket from "/assets/prosthetic/smallSocket.jpeg";
 import smallSocket2 from "/assets/prosthetic/smallSocket2.jpeg";
 
 import generationImg from "/assets/orthoticGen/generationGif.gif";
-import modelImg from "/assets/orthoticGen/3D models.png";
-import handshotImg from "/assets/orthoticGen/handShots.png";
-import outlineImg from "/assets/orthoticGen/foot outline.png";
+import modelImg from "/assets/orthoticGen/3D models.jpg";
+import handshotImg from "/assets/orthoticGen/handShots.jpg";
+import outlineImg from "/assets/orthoticGen/foot outline.jpg";
 
 export default function OrthoticProstheticPage() {
 
@@ -205,7 +205,7 @@ export default function OrthoticProstheticPage() {
            Targeted as a temporary or low-cost alternative, the prosthetic socket can be formed to precisely accomodate the residual limb.
           </Paragraph>
           <Paragraph>
-          Traditional polypropelene workflows require involved molding and casting, a costly and time-consuming process. This workflow allows for a socket of approximate fit to be precisely contoured to the patient's limb in minutes and at a fraction of the cost.
+          Traditional polypropelene workflows require involved molding and casting, a costly and time-consuming process. This workflow allows for a socket of approximate fit to be precisely contoured to the patient&apos;s limb in minutes and at a fraction of the cost.
           </Paragraph>
           <Paragraph>
             Project files and detailed forming instructions are available on Github.

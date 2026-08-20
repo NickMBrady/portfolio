@@ -9,7 +9,7 @@ import { BubbleDiv, GithubBubble, KeywordBubble } from './Bubbles';
 import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image } from './ProjectComponents';
 
 import logoImg from "/assets/nb-logo.png";
-import diffEdgeImg from "/assets/diffEdge/diffusionEdge.png";
+import diffEdgeImg from "/assets/diffEdge/diffusionEdge.jpg";
 export default function DiffusionEdgePage() {
 
   return (
@@ -70,13 +70,13 @@ export default function DiffusionEdgePage() {
           For instructions on checkpoints, my weights, and training, see the Github (linked above). 
           </Paragraph>
           <Paragraph>
-          A minimum of 400 images post-augmentation should be used for training, ideally more than 800. Data augmentation can be done with the provided augmentation script 'augmentation.py,' an easily adaptable framework with a wide array of procesing methods. Early training can be dramatically hastened by using a batch size of one until the gradients become unstable, at which point training can be resumed with a batch size of two.
+          A minimum of 400 images post-augmentation should be used for training, ideally more than 800. Data augmentation can be done with the provided augmentation script &apos;augmentation.py,&apos; an easily adaptable framework with a wide array of procesing methods. Early training can be dramatically hastened by using a batch size of one until the gradients become unstable, at which point training can be resumed with a batch size of two.
           </Paragraph>
           <SubHeading>
           Grain Processor
           </SubHeading>
           <Paragraph>
-          Grain Processor is a Python algorithm that operates after the edge detection model produces a segmentation. Using OpenCV it cleans and skeletonizes the result, then presents the user a colored view of the identified grains. The user may click on extraneous segmentations to remove them from processing. Once complete ('d' on the keyboard twice), data for the width, heigh, area, and aspect ratio of each identified grain will be exported to a file. Default units are microns, defined by a scaling factor of nanometers per pixel. 
+          Grain Processor is a Python algorithm that operates after the edge detection model produces a segmentation. Using OpenCV it cleans and skeletonizes the result, then presents the user a colored view of the identified grains. The user may click on extraneous segmentations to remove them from processing. Once complete (&apos;d&apos; on the keyboard twice), data for the width, heigh, area, and aspect ratio of each identified grain will be exported to a file. Default units are microns, defined by a scaling factor of nanometers per pixel. 
           </Paragraph>
         </ContentContainer>
       </Main>

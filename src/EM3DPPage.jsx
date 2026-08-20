@@ -9,7 +9,6 @@ import { BubbleDiv, KeywordBubble } from './Bubbles';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { SampleNextArrow, SamplePrevArrow } from './SliderFunctions';
 import { Main, ContentContainer, BoldTitle, Paragraph, PdfContainer } from './ProjectComponents';
 
 import logoImg from "/assets/nb-logo.png";
@@ -17,27 +16,6 @@ import PdfViewer from './PdfViewer';
 import pdfUrl from '/assets/3DEm/em3dp.pdf';
 
 export default function EM3DPPage() {
-
-  const settings = {
-    dots: true,
-    adaptiveHeight: true,
-    infinite: true,
-    slidesToShow: 2,
-    slidesToScroll: 2,
-    autoplay: false,
-    pauseOnHover: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
 
   return (
     <>

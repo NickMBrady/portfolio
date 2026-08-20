@@ -4,10 +4,10 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, LogoBox, Logo, NBTitle, NavLinkSection, LinkBox } from './NavBarComponent';
-import { BubbleDiv, GithubBubble, KeywordBubble } from './Bubbles';
+import { BubbleDiv, KeywordBubble } from './Bubbles';
 import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, YouTubeContainer } from './ProjectComponents';
 import logoImg from "/assets/nb-logo.png";
-import linearStageImg from "/assets/linearStage/linearStage.png";
+import linearStageImg from "/assets/linearStage/linearStage.jpg";
 import linearStageGif from "/assets/linearStage/linearGif.gif";
 
 export default function LinearStagePage() {
@@ -51,7 +51,7 @@ export default function LinearStagePage() {
           Design Requirements
           </SubHeading>
           <Paragraph>
-          I was tasked with creating a linear stage capable of high-precision (&lt;0.001") movement. The stage was required to 
+          I was tasked with creating a linear stage capable of high-precision (&lt;0.001&quot;) movement. The stage was required to 
           be easily manually controlled and be completed in only one week. Additionally, the stage was required to be able to be easily 
           installed at any point on the production line.  
           </Paragraph>

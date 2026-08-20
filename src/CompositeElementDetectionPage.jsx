@@ -4,7 +4,7 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, LogoBox, Logo, NBTitle, NavLinkSection, LinkBox } from './NavBarComponent';
-import { BubbleDiv, GithubBubble, KeywordBubble } from './Bubbles';
+import { BubbleDiv, KeywordBubble } from './Bubbles';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image } from './ProjectComponents';
 
 import logoImg from "/assets/nb-logo.png";
-import GUIssImg from "/assets/CED/hero.png";
+import GUIssImg from "/assets/CED/Hero.jpg";
 export default function OrthoticProstheticPage() {
 
   return (

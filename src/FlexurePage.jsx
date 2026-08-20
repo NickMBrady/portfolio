@@ -4,11 +4,11 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, LogoBox, Logo, NBTitle, NavLinkSection, LinkBox } from './NavBarComponent';
-import { BubbleDiv, GithubBubble, KeywordBubble } from './Bubbles';
+import { BubbleDiv, KeywordBubble } from './Bubbles';
 import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, TableContainer, MinimalTable, TableHeader, TableCell } from './ProjectComponents';
 import logoImg from "/assets/nb-logo.png";
-import flexureImg from "/assets/flexure/flexure.png";
-import graphImg from "/assets/flexure/graph.png";
+import flexureImg from "/assets/flexure/flexure.jpg";
+import graphImg from "/assets/flexure/graph.jpg";
 
 export default function FlexurePage() {
   return (

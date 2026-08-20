@@ -1,5 +1,4 @@
-import React from 'react';
-
+// eslint-disable-next-line react/prop-types
 const SafeAreaWrapper = ({ children }) => {
     const safeAreaStyles = {
         paddingTop: 'env(safe-area-inset-top)',

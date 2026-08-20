@@ -54,7 +54,7 @@ export default function AboutPage() {
               All these years later, engineering&apos;s power to create, change, and improve has only grown stronger in my eyes. 
               It is this passion, combined with an extremely high standard for my work, that I believe sets me apart.
               <br /><br />
-              The 'Projects' section features a tour of my favorite work over the years. For more information, including
+              The &apos;Projects&apos; section features a tour of my favorite work over the years. For more information, including
               instructions, files, code, and everything else, please visit the Github repository link for each.
               <br /><br />
 

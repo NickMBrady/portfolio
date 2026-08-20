@@ -9,15 +9,13 @@ import { BubbleDiv, KeywordBubble } from './Bubbles';
 
 import logoImg from "/assets/nb-logo.png";
 import CEDImg from "/assets/CED/CED.jpg";
-import diffImg from "/assets/diffEDge/diffusionEdge.png";
+import diffImg from "/assets/diffEdge/diffusionEdge.jpg";
 import orthoticImg from "/assets/orthotic/orthotic.jpg";
 import img3d from "/assets/3DEm/hero.webp";
 import kidney from "/assets/kidney/hero2.webp";
-import appImg from "/assets/intervalTimer/hero.jpg";
 import cardiacImg from "/assets/cardiac/main.jpeg";
 import chinrestImg from "/assets/chinrest/chinrest.jpg";
-import flexureImg from "/assets/flexure/flexure.png";
-import linearStageImg from "/assets/linearStage/linearStage.png";
+import flexureImg from "/assets/flexure/flexure.jpg";
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
@@ -93,7 +91,7 @@ Simulated fatigue, stress, and stiffness before ordering part machining and supe
               <PlusSign>+</PlusSign>
               <LeftCol>
                 <ProjectTitle>Cardiac Simulator Capable of Controlled Pulsatile Flow</ProjectTitle>
-                <Paragraph>Engineered the hardware solution for an anatomically accurate fluid pump system, satisfying pressure and flow rate criteria with simulated "heart beats": periodic modulations in flow pressure and velocity (pulsatile flow). </Paragraph>
+                <Paragraph>Engineered the hardware solution for an anatomically accurate fluid pump system, satisfying pressure and flow rate criteria with simulated &quot;heart beats&quot;: periodic modulations in flow pressure and velocity (pulsatile flow). </Paragraph>
                 <BubbleDiv>
                   <KeywordBubble>3D Printing</KeywordBubble>
                   <KeywordBubble>C++</KeywordBubble>
@@ -186,7 +184,7 @@ Simulated fatigue, stress, and stiffness before ordering part machining and supe
               <PlusSign>+</PlusSign>
               <LeftCol>
                 <ProjectTitle>Novel Moldable, Ventilated Violin Chinrest</ProjectTitle>
-                <Paragraph>Invented a novel moldable, ventilated violin chinrest. Dramatically improves comfort from "one-size-fits-all" wood or plastic solutions. Ventilated by design, prevents sweat buildup under jaw. Infinitely remoldable.  </Paragraph>
+                <Paragraph>Invented a novel moldable, ventilated violin chinrest. Dramatically improves comfort from &quot;one-size-fits-all&quot; wood or plastic solutions. Ventilated by design, prevents sweat buildup under jaw. Infinitely remoldable.  </Paragraph>
                 <BubbleDiv>
                   <KeywordBubble>Material Dynamics</KeywordBubble>
                   <KeywordBubble>3D Printing</KeywordBubble>
