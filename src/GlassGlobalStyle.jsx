@@ -9,6 +9,8 @@ import {
   grainHighlight,
   hoverWashLayer,
   PANEL_RADIUS_SM,
+  NAV_OFFSET,
+  NAV_OFFSET_SM,
   HOVER_INK,
   HOVER_FADE,
 } from './glass';
@@ -35,7 +37,7 @@ const GlassGlobalStyle = createGlobalStyle`
   ${Nav}${Nav} {
     position: relative;
     width: auto;
-    margin: 9px 11px 0;
+    margin: ${NAV_OFFSET}px 11px 0;
     box-sizing: border-box;
     ${glassSurface}
   }
@@ -79,7 +81,7 @@ const GlassGlobalStyle = createGlobalStyle`
 
   @media (max-width: 576px) {
     ${Nav}${Nav} {
-      margin: 6px 6px 0;
+      margin: ${NAV_OFFSET_SM}px 6px 0;
       border-radius: ${PANEL_RADIUS_SM}px;
     }
 

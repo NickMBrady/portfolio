@@ -6,7 +6,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, LogoBox, Logo, NBTitle, NavLinkSection, LinkBox } from './NavBarComponent';
 import GlassGlobalStyle from './GlassGlobalStyle';
 import { BubbleDiv, KeywordBubble } from './Bubbles';
-import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, TableContainer, MinimalTable as BaseMinimalTable, TableHeader, TableCell } from './ProjectComponents';
+import { Main, ContentContainer, BoldTitle, SubHeading, Paragraph, Image, TableContainer, MinimalTable, TableHeader, TableCell } from './ProjectComponents';
 import logoImg from "/assets/nb-logo.png";
 import flexureImg from "/assets/flexure/flexure.jpg";
 import graphImg from "/assets/flexure/graph.jpg";
@@ -171,13 +171,6 @@ Simulated fatigue, stress, and stiffness before ordering part machining and supe
    typography block covers h1-h3, a, p and span only, so the table asks for the
    font here; its colour, weight, rules and spacing still come from
    TableHeader and TableCell. */
-const MinimalTable = styled(BaseMinimalTable)`
-  th,
-  td {
-    font-family: "Lexend Exa", sans-serif;
-  }
-`;
-
 const WideNavLinkSection = styled(NavLinkSection)`
   flex-basis: 100%;
 `;

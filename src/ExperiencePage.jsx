@@ -169,9 +169,7 @@ const ExperienceDate = styled.p`
   font-size: 16px;
   font-weight: 300;
   margin: 0;
-  /* Was a dead grey. The palette has no muted-ink token, so the date takes
-     the blue accent -- it still reads as secondary against the title. */
-  color: var(--accent-teal);
+  color: var(--muted-ink);
   padding-bottom: 20px;
 `;
 

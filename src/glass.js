@@ -6,6 +6,18 @@ import { css } from 'styled-components';
 
    Nothing here imports a component, so it is safe to import from anywhere. */
 
+export const FONT_STACK = '"Lexend Exa", sans-serif';
+
+// The floating nav's top margin. Every scrolling page subtracts this from its
+// calc(100vh - …) or its content clips off the bottom, silently, because body
+// has overflow: hidden. Keep it here so it cannot drift out of step.
+export const NAV_OFFSET = 9;
+export const NAV_OFFSET_SM = 6;
+
+// Gutter between panels, matching the home page's bento grid.
+export const PANEL_GAP = 8;
+export const PANEL_GAP_SM = 6;
+
 export const PANEL_RADIUS = 22;
 export const PANEL_RADIUS_SM = 16;
 
@@ -38,7 +50,13 @@ export const HOVER_ICON_SPIN = '0.5s';
 export const HOVER_ICON_FADE = HOVER_FADE;
 
 export const rootVars = css`
+  /* Tells the UA to render scrollbars and form controls dark. Without it
+     WebKit paints a light scrollbar over the near-black field. */
+  color-scheme: dark;
+
   --light-gray: #cdd6e0;
+  /* Secondary text: dates, captions, metadata. */
+  --muted-ink: rgba(205, 214, 224, 0.55);
   --dividing-line: rgba(150, 178, 208, 0.14);
   /* only consumed as a scrollbar track colour by the scrolling pages */
   --background: #0a0f16;
@@ -60,8 +78,8 @@ export const pageBackground = css`
 `;
 
 export const typography = css`
-  h1, h2, h3, a, p, span {
-    font-family: "Lexend Exa", sans-serif;
+  h1, h2, h3, a, p, span, th, td {
+    font-family: ${FONT_STACK};
     font-weight: 400;
     color: var(--light-gray);
   }
