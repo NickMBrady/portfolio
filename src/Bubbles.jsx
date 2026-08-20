@@ -1,5 +1,22 @@
 import 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { glassSurface, rimLight } from './glass';
+
+/* The tags are glass as well, only capsule-shaped: the panel radius is
+   replaced by a full round after the surface is laid down, and the rim follows
+   it because rimLight inherits the radius. The grain layer is deliberately
+   left off -- it is cut to the panel radius, so it would square off the ends
+   of a pill this small. */
+const glassPill = css`
+  position: relative;
+  box-sizing: border-box;
+  ${glassSurface}
+  border-radius: 50px;
+
+  &::before {
+    ${rimLight}
+  }
+`;
 
 export const BubbleDiv = styled.div`
   display: flex;
@@ -18,10 +35,9 @@ export const BubbleDiv = styled.div`
 `;
 
 export const KeywordBubble = styled.span`
-  background-color: #5d708330;
-  color: #a2a2a2;
+  ${glassPill}
+  color: var(--light-gray);
   padding: 10px 30px; /* Adjust padding to remove vertical space */
-  border-radius: 50px;
   font-size: 12px;
   white-space: nowrap; /* Prevent text from wrapping */
   align-items: center;
@@ -40,10 +56,9 @@ export const KeywordBubble = styled.span`
 `;
 
 export const GithubBubble = styled.span`
-  background-color: #5d708330;
-  color: #dfdfdf;
+  ${glassPill}
+  color: var(--light-gray);
   padding: 10px 30px; /* Adjust padding to remove vertical space */
-  border-radius: 50px;
   font-size: 12px;
   white-space: nowrap; /* Prevent text from wrapping */
   align-items: center;

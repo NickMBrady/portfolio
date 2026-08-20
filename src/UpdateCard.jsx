@@ -1,11 +1,11 @@
 import 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { glassPanel } from './glass';
 
 // Styled component for the Card container
 const CardContainer = styled.div`
-  background-color: #5d708330;
-  border-radius: 10px;
+  ${glassPanel}
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -26,14 +26,14 @@ const CardTitle = styled.h2`
   font-size: 18px;
   font-weight: bold;
   margin: 0;
-  color: #b7b7b7;
+  color: var(--light-gray);
 `;
 
 // Styled component for the Card date
 const CardDate = styled.p`
   font-size: 14px;
   font-weight: 300;
-  color: #b7b7b7;
+  color: var(--light-gray);
   margin: 5px 0;
 `;
 
@@ -41,7 +41,7 @@ const CardDate = styled.p`
 const CardDescription = styled.p`
   font-size: 16px;
   font-weight: 300;
-  color: #b7b7b7;
+  color: var(--light-gray);
   margin: 10px 0 0;
   line-height: 1.4;
 
