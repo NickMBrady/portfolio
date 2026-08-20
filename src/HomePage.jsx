@@ -1,4 +1,3 @@
-import Spline from "@splinetool/react-spline";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +7,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, NavLinkSection, NavAboutSection, NBTitle, LogoBox, LinkBox, Logo } from './NavBarComponent';
 import { useNavigate } from 'react-router-dom';
 import NoiseControls from './NoiseControls';
+import DotSphere from './DotSphere';
 
 import logoImg from "/assets/nb-logo.png";
 
@@ -45,9 +45,9 @@ export default function HomePage(){
       <Main>
         <MainGrid>
           <ImageSection>
-            <SplineWrapper>
-              <Spline scene="https://prod.spline.design/uaj1TktepL98W7fs/scene.splinecode" />
-            </SplineWrapper>
+            <SceneLayer>
+              <DotSphere />
+            </SceneLayer>
           </ImageSection>
           <DescriptionSection>
             <DescriptionText> Hi, I&apos;m a student at <strong>Duke University</strong> passionate about <strong>material dynamics, additive manufacturing, and optimization.</strong> </DescriptionText>
@@ -123,7 +123,7 @@ const GlobalStyle = createGlobalStyle`
   ${Nav}${Nav} {
     position: relative;
     width: auto;
-    margin: 18px 22px 0;
+    margin: 9px 11px 0;
     box-sizing: border-box;
     border: 1px solid var(--dividing-line);
     border-radius: 22px;
@@ -188,8 +188,36 @@ const GlobalStyle = createGlobalStyle`
       radial-gradient(400px 300px at 100% 100%, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.21) 40%, rgba(255, 255, 255, 0.08) 72%, transparent 100%);
   }
 
-  ${NavAboutSection}${NavAboutSection}:hover {
+  /* Same fading overlay as the bento cells: a gradient cannot be
+     transitioned, so the wash rides on an overlay's opacity instead. The
+     base component's grey hover fill is suppressed on this page. */
+  ${NavAboutSection}${NavAboutSection} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  ${NavAboutSection}${NavAboutSection}::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
     background: linear-gradient(135deg, rgba(74, 159, 224, 0.92) 0%, rgba(70, 110, 215, 0.9) 55%, rgba(95, 124, 232, 0.92) 100%);
+    transition: opacity 0.45s ease;
+  }
+
+  ${NavAboutSection}${NavAboutSection}:hover {
+    background-color: transparent;
+  }
+
+  ${NavAboutSection}${NavAboutSection}:hover::before {
+    opacity: 1;
+  }
+
+  ${NavAboutSection}${NavAboutSection} a {
+    position: relative;
+    z-index: 1;
+    transition: color 0.45s ease;
   }
 
   ${NavAboutSection}${NavAboutSection}:hover a {
@@ -198,7 +226,7 @@ const GlobalStyle = createGlobalStyle`
 
   @media (max-width: 576px) {
     ${Nav}${Nav} {
-      margin: 12px 12px 0;
+      margin: 6px 6px 0;
       border-radius: 16px;
     }
 
@@ -210,12 +238,12 @@ const GlobalStyle = createGlobalStyle`
 const Main = styled.div`
   position: relative;
   flex-grow: 1;
-  height: calc(100vh - 175px - 18px); /* accounts for the floating nav's top margin */
+  height: calc(100vh - 175px - 9px); /* accounts for the floating nav's top margin */
   width: 100%;
 
 
   @media (max-width: 576px) {
-    height: calc(100vh - 80px - 12px); /* accounts for the floating nav's top margin */
+    height: calc(100vh - 80px - 6px); /* accounts for the floating nav's top margin */
     overflow-y: auto;
     /* background-color: red; */
   }
@@ -226,16 +254,16 @@ const MainGrid = styled.div`
   display: grid;
   height: 100%;
   box-sizing: border-box;
-  padding: 18px 22px 24px;
-  gap: 16px;
+  padding: 9px 11px 12px;
+  gap: 8px;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 2fr 1fr;
 
   @media (max-width: 576px) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    padding: 12px;
-    gap: 12px;
+    padding: 6px;
+    gap: 6px;
     margin-bottom: 100px;
     /* grid-template-rows: auto repeat(4, 1fr);  */
     /* height: calc(100vh - 100px); */
@@ -335,7 +363,7 @@ const ImageSection = styled(GridSection)`
     0 18px 40px -22px rgba(0, 0, 0, 0.55);
 `;
 
-const SplineWrapper = styled.div`
+const SceneLayer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -409,6 +437,8 @@ const LowerLeftSection = styled(GridSection)`
 `;
 
 const BoldTitle = styled.a`
+  position: relative;
+  z-index: 1;
   font-size: 40px;
   font-weight: bolder;
   padding-right: 15%;
@@ -436,6 +466,8 @@ const BoldTitle = styled.a`
 `;
 
 const PlusIcon = styled.svg`
+  position: relative;
+  z-index: 1;
   height: 115px;
   width: 115px;
 
@@ -464,6 +496,8 @@ const PlusIcon = styled.svg`
 `
 
 const ArrowIcon = styled.svg`
+  position: relative;
+  z-index: 1;
   height: 115px;
   width: 115px;
   transition: transform 0.5s ease, color 0.4s ease;
@@ -499,11 +533,10 @@ const ProjectSection = styled(GridSection)`
 
   flex-basis: 100%;
 
-  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: box-shadow 0.45s ease, border-color 0.45s ease;
   padding: 0 20px;
 
   &:hover {
-    background: linear-gradient(135deg, rgba(74, 159, 224, 0.92) 0%, rgba(70, 110, 215, 0.9) 55%, rgba(95, 124, 232, 0.92) 100%);
     border-color: rgba(255, 255, 255, 0.35);
     box-shadow:
       inset 0 0 80px rgba(255, 255, 255, 0.18),
@@ -526,6 +559,24 @@ const ProjectSection = styled(GridSection)`
   }
 `
 const ProjectContainer = styled.div`
+  /* The blue hover wash lives on this overlay rather than on the section's
+     own background: CSS cannot transition a gradient, so swapping the
+     background made the highlight snap in while the title and icon animated.
+     Fading an overlay's opacity gives it the same timing as the rest. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(135deg, rgba(74, 159, 224, 0.92) 0%, rgba(70, 110, 215, 0.9) 55%, rgba(95, 124, 232, 0.92) 100%);
+    transition: opacity 0.45s ease;
+  }
+
+  ${ProjectSection}:hover &::before {
+    opacity: 1;
+  }
+
   display: flex;
   flex-direction: row;
   align-items: center;
