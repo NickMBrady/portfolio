@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
@@ -6,6 +6,17 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } from './NavBarComponent';
 import { BubbleDiv, KeywordBubble } from './Bubbles';
+import GlassGlobalStyle from './GlassGlobalStyle';
+import {
+  glassSurface,
+  rimLight,
+  hoverLit,
+  PANEL_RADIUS,
+  PANEL_RADIUS_SM,
+  HOVER_WASH,
+  HOVER_INK,
+  HOVER_FADE,
+} from './glass';
 
 import logoImg from "/assets/nb-logo.png";
 import CEDImg from "/assets/CED/CED.jpg";
@@ -21,7 +32,7 @@ export default function ProjectsPage() {
   const navigate = useNavigate();
   return (
     <>
-      <GlobalStyle />  {/* Apply global styles */}
+      <GlassGlobalStyle />  {/* Apply global styles */}
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -205,43 +216,23 @@ Simulated fatigue, stress, and stiffness before ordering part machining and supe
   );
 }
 
-const GlobalStyle = createGlobalStyle`
-  :root {
-    --light-gray: #b7b7b7;
-    --dividing-line: #303f4d;
-    --background: #f5f5f5;
-  }
-
-  h1, h2, h3, a, p, span {
-    font-family: "Lexend Exa", sans-serif;
-    font-weight: 400;
-    color: var(--light-gray);
-  }
-
-  a {
-    font-size: 10pt;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  strong {
-    font-weight: 400;
-  }
-
-`;
+/* This page's own scroll area. Every height below subtracts the floating nav's
+   top margin as well as its height -- the nav is no longer flush with the top
+   of the viewport, so without that the last row is cut off. */
 const Main = styled.div`
+  position: relative;
   flex-grow: 1;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 200px - 9px); /* accounts for the floating nav's top margin */
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
-  scrollbar-color: var(--dividing-line) var(--background); /* Firefox */
+  scrollbar-color: var(--dividing-line) transparent; /* Firefox */
   overflow-x: hidden;
   @media (max-width: 800px) {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 120px - 9px); /* accounts for the floating nav's top margin */
   }
 
   @media (max-width: 576px) {
-    height: calc(100vh - 75px);
+    height: calc(100vh - 75px - 6px); /* accounts for the floating nav's top margin */
   }
 
 `;
@@ -249,15 +240,25 @@ const Main = styled.div`
 const MainGrid = styled.div`
   display: grid;
   height: 100%;
+  box-sizing: border-box;
+  /* Lines the column up with the floating nav's side margins. The tracks stay
+     at 10%/90% and there is no gap, so they still resolve to exactly the
+     content box and nothing spills into the horizontal clip. */
+  padding: 9px 11px 12px;
   grid-template-columns: 10% 90%;
+
+  @media (max-width: 576px) {
+    padding: 6px;
+  }
 `;
 
+/* The hairline rules that used to frame these two columns are gone: the rows
+   now carry their own glass edges, so a second set of borders would only read
+   as leftover chrome. The vertical title is left floating in the gutter. */
 const ProjectsSection = styled.div`
   display: flex;
   align-items: flex-start; /* Align items to the top */
   justify-content: center;
-  border-left: 0.5px solid var(--dividing-line);
-  border-bottom: 0.5px solid var(--dividing-line);
   overflow-y: auto;
 `;
 
@@ -266,8 +267,7 @@ const ContentSection = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start; /* Push items to the top */
-  border-left: 0.5px solid var(--dividing-line);
-  border-bottom: 0.5px solid var(--dividing-line);
+  gap: 8px; /* the rows are separate slabs now, not divisions of one block */
   position: relative; /* establish clipping context */
   overflow-x: hidden; /* keep left reveal under Projects bar until slide */
   overflow-y: visible; /* allow vertical overflow for scrolling */
@@ -299,11 +299,28 @@ const RightCol = styled.div`
   padding-top: 70px;
   position: relative;
   border-left: 0.5px solid var(--dividing-line);
+  /* The image wrapper inside is deliberately wider than this column and used
+     to be cut off by ContentSection's horizontal clip, at exactly this column's
+     right edge. Clipping here instead lands the cut in the same place while
+     letting the fillets follow the card, so the photo no longer squares off
+     the slab's corner. Inset by the card's 1px border. */
+  overflow: hidden;
+  border-radius: 0 ${PANEL_RADIUS - 1}px ${PANEL_RADIUS - 1}px 0;
 
   @media (max-width: 800px) {
     padding: 30px;
     flex-basis: auto;
-    height: 200px;  
+    height: 200px;
+  }
+
+  /* Matches the row's own breakpoint: below it the row stacks, so this column
+     is the bottom of the card and the fillets move with it. */
+  @media (max-width: 768px) {
+    border-radius: 0 0 ${PANEL_RADIUS - 1}px ${PANEL_RADIUS - 1}px;
+  }
+
+  @media (max-width: 576px) {
+    border-radius: 0 0 ${PANEL_RADIUS_SM - 1}px ${PANEL_RADIUS_SM - 1}px;
   }
 `;
 
@@ -382,16 +399,40 @@ const PlusSign = styled.div`
   display: none;
 `;
 
+/* Each row is a glass slab.
+ *
+ * Deliberately `glassSurface` with the blur switched off rather than the full
+ * `glassPanel`, for two reasons. First, cost: a backdrop-filter is re-sampled
+ * every frame its backdrop moves, and unlike the home page's four static cells
+ * these eight scroll, over a `background-attachment: fixed` field -- the one
+ * combination that reliably drops frames. Second, there is nothing behind a row
+ * but that smooth gradient, and blurring a smooth gradient returns the gradient,
+ * so the blur was buying no picture for the price. The fill, the rim, the inset
+ * shading and the shadows all stay, so the slabs still read as glass.
+ *
+ * `::before` is spoken for by the reveal tab, so the contour light goes on
+ * `::after` and the grain highlight is the one part of the panel recipe this
+ * page does without. */
 const Row = styled.div`
   display: flex;
   width: 100%;
-  border-bottom: 0.5px solid var(--dividing-line);
-  transition: transform 0.3s ease;
+  box-sizing: border-box;
+  ${glassSurface}
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  /* The reveal tab sits outside the box, so the surface's clip has to go. The
+     fill and border still follow the fillets on their own. */
+  overflow: visible;
+  transition: transform 0.3s ease, box-shadow ${HOVER_FADE} ease, border-color ${HOVER_FADE} ease;
   letter-spacing: 0.5px;
   position: relative;
   cursor: pointer;
 
-  /* Light blue reveal column with centered plus, revealed when row shifts right */
+  &::after {
+    ${rimLight}
+  }
+
+  /* Blue reveal column with centered plus, revealed when row shifts right */
   &::before {
     content: "+";
     position: absolute;
@@ -399,8 +440,9 @@ const Row = styled.div`
     top: 0;
     width: 30px;
     height: 100%;
-    background-color: #a2aebe; /* reuse site light blue */
-    color: var(--background-color); /* plus uses site background color */
+    background: ${HOVER_WASH}; /* the same wash every hover target uses */
+    border-radius: ${PANEL_RADIUS}px 0 0 ${PANEL_RADIUS}px;
+    color: ${HOVER_INK}; /* plus uses the hover ink */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -410,6 +452,7 @@ const Row = styled.div`
 
   &:hover {
     transform: translateX(30px);
+    ${hoverLit}
   }
 
   @media (max-width: 768px) {
@@ -420,5 +463,9 @@ const Row = styled.div`
     &::before {
       display: none; /* hide reveal column on mobile */
     }
+  }
+
+  @media (max-width: 576px) {
+    border-radius: ${PANEL_RADIUS_SM}px;
   }
 `;
