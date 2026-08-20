@@ -7,7 +7,7 @@ import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } 
 import { NavAboutSection } from './NavBarComponent';
 import GlassGlobalStyle from './GlassGlobalStyle';
 import GlassPanel from './GlassPanel';
-import { hoverWashLayer, HOVER_INK, HOVER_FADE } from './glass';
+import { hoverWashLayer, hoverLit, hoverPanelTransition, hoverTitle, hoverIcon, HOVER_INK } from './glass';
 import { useNavigate } from 'react-router-dom';
 import NoiseControls from './NoiseControls';
 import DotSphere from './DotSphere';
@@ -206,12 +206,10 @@ const LowerLeftSection = styled(GridSection)`
 `;
 
 const BoldTitle = styled.a`
-  position: relative;
-  z-index: 1;
+  ${hoverTitle}
   font-size: 40px;
   font-weight: bolder;
   padding-right: 15%;
-  transition: color 1s ease;
 
   @media (max-width: 1200px) {
     font-size: 35px;
@@ -235,13 +233,9 @@ const BoldTitle = styled.a`
 `;
 
 const PlusIcon = styled.svg`
-  position: relative;
-  z-index: 1;
+  ${hoverIcon}
   height: 115px;
   width: 115px;
-
-  transition: transform 0.5s ease, color 0.4s ease;
-  color: #9fc0e4;
 
   @media (max-width: 1200px) {
     height: 100px;
@@ -265,12 +259,9 @@ const PlusIcon = styled.svg`
 `
 
 const ArrowIcon = styled.svg`
-  position: relative;
-  z-index: 1;
+  ${hoverIcon}
   height: 115px;
   width: 115px;
-  transition: transform 0.5s ease, color 0.4s ease;
-  color: #9fc0e4;
 
   @media (max-width: 1200px) {
     height: 100px;
@@ -302,15 +293,11 @@ const ProjectSection = styled(GridSection)`
 
   flex-basis: 100%;
 
-  transition: box-shadow ${HOVER_FADE} ease, border-color ${HOVER_FADE} ease;
+  ${hoverPanelTransition}
   padding: 0 20px;
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.35);
-    box-shadow:
-      inset 0 0 80px rgba(255, 255, 255, 0.18),
-      inset 0 1px 0 rgba(255, 255, 255, 0.35),
-      0 0 45px rgba(80, 140, 240, 0.20);
+    ${hoverLit}
 
     ${BoldTitle} {
       color: ${HOVER_INK};

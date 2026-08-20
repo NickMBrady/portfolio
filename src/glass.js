@@ -30,6 +30,12 @@ export const HOVER_WASH =
   'linear-gradient(135deg, rgba(74, 159, 224, 0.92) 0%, rgba(70, 110, 215, 0.9) 55%, rgba(95, 124, 232, 0.92) 100%)';
 export const HOVER_INK = '#0a0f16';
 export const HOVER_FADE = '0.45s';
+// The other halves of the same hover. They are deliberately not all equal --
+// the title drifts, the icon turns faster than it recolours -- but they live
+// here so the spread is a choice rather than an accident.
+export const HOVER_TITLE_FADE = '1s';
+export const HOVER_ICON_SPIN = '0.5s';
+export const HOVER_ICON_FADE = '0.4s';
 
 export const rootVars = css`
   --light-gray: #cdd6e0;
@@ -175,4 +181,40 @@ export const hoverWashLayer = css`
   opacity: 0;
   background: ${HOVER_WASH};
   transition: opacity ${HOVER_FADE} ease;
+`;
+
+/* The lit state of a panel under the wash: the rim brightens and the surface
+   picks up an inner glow and an outer blue bloom. Use inside &:hover. */
+export const hoverLit = css`
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 0 80px rgba(255, 255, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 0 45px rgba(80, 140, 240, 0.20);
+`;
+
+/* What a panel animates on its own account while the wash fades. */
+export const hoverPanelTransition = css`
+  transition: box-shadow ${HOVER_FADE} ease, border-color ${HOVER_FADE} ease;
+`;
+
+/* The wash overlay is painted over the panel, so anything that must stay
+   legible through a hover has to opt into sitting above it. Forgetting this
+   is the one way to wire a hover target wrong. */
+export const aboveWash = css`
+  position: relative;
+  z-index: 1;
+`;
+
+/* A title that darkens to the hover ink. */
+export const hoverTitle = css`
+  ${aboveWash}
+  transition: color ${HOVER_TITLE_FADE} ease;
+`;
+
+/* An icon that turns and darkens to the hover ink. */
+export const hoverIcon = css`
+  ${aboveWash}
+  transition: transform ${HOVER_ICON_SPIN} ease, color ${HOVER_ICON_FADE} ease;
+  color: #9fc0e4;
 `;
