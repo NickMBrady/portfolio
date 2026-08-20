@@ -7,15 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } from './NavBarComponent';
 import { BubbleDiv, KeywordBubble } from './Bubbles';
 import GlassGlobalStyle from './GlassGlobalStyle';
+import GlassPanel from './GlassPanel';
 import {
   glassSurface,
-  rimLight,
-  hoverLit,
-  PANEL_RADIUS,
-  PANEL_RADIUS_SM,
-  HOVER_WASH,
+  flushPanel,
+  REVEAL_FILL,
   HOVER_INK,
-  HOVER_FADE,
 } from './glass';
 
 import logoImg from "/assets/nb-logo.png";
@@ -32,7 +29,7 @@ export default function ProjectsPage() {
   const navigate = useNavigate();
   return (
     <>
-      <GlassGlobalStyle />  {/* Apply global styles */}
+      <GlassGlobalStyle $flushNav />  {/* Apply global styles */}
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -222,44 +219,43 @@ Simulated fatigue, stress, and stiffness before ordering part machining and supe
 const Main = styled.div`
   position: relative;
   flex-grow: 1;
-  height: calc(100vh - 200px - 9px); /* accounts for the floating nav's top margin */
+  height: calc(100vh - 200px);
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
   scrollbar-color: var(--dividing-line) transparent; /* Firefox */
   overflow-x: hidden;
   @media (max-width: 800px) {
-    height: calc(100vh - 120px - 9px); /* accounts for the floating nav's top margin */
+    height: calc(100vh - 120px);
   }
 
   @media (max-width: 576px) {
-    height: calc(100vh - 75px - 6px); /* accounts for the floating nav's top margin */
+    height: calc(100vh - 75px);
   }
 
 `;
 
 const MainGrid = styled.div`
   display: grid;
-  height: 100%;
+  /* min-height, not height: the Projects bar is a panel that clips its
+     overflow, so the row has to grow to the full scrolled length. */
+  min-height: 100%;
   box-sizing: border-box;
-  /* Lines the column up with the floating nav's side margins. The tracks stay
-     at 10%/90% and there is no gap, so they still resolve to exactly the
-     content box and nothing spills into the horizontal clip. */
-  padding: 9px 11px 12px;
   grid-template-columns: 10% 90%;
 
   @media (max-width: 576px) {
-    padding: 6px;
   }
 `;
 
 /* The hairline rules that used to frame these two columns are gone: the rows
    now carry their own glass edges, so a second set of borders would only read
    as leftover chrome. The vertical title is left floating in the gutter. */
-const ProjectsSection = styled.div`
+const ProjectsSection = styled(GlassPanel)`
   display: flex;
   align-items: flex-start; /* Align items to the top */
   justify-content: center;
-  overflow-y: auto;
+  ${flushPanel}
+  border-left: 0.5px solid var(--dividing-line);
+  border-bottom: 0.5px solid var(--dividing-line);
 `;
 
 const ContentSection = styled.div`
@@ -267,7 +263,6 @@ const ContentSection = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start; /* Push items to the top */
-  gap: 8px; /* the rows are separate slabs now, not divisions of one block */
   position: relative; /* establish clipping context */
   overflow-x: hidden; /* keep left reveal under Projects bar until slide */
   overflow-y: visible; /* allow vertical overflow for scrolling */
@@ -299,13 +294,7 @@ const RightCol = styled.div`
   padding-top: 70px;
   position: relative;
   border-left: 0.5px solid var(--dividing-line);
-  /* The image wrapper inside is deliberately wider than this column and used
-     to be cut off by ContentSection's horizontal clip, at exactly this column's
-     right edge. Clipping here instead lands the cut in the same place while
-     letting the fillets follow the card, so the photo no longer squares off
-     the slab's corner. Inset by the card's 1px border. */
   overflow: hidden;
-  border-radius: 0 ${PANEL_RADIUS - 1}px ${PANEL_RADIUS - 1}px 0;
 
   @media (max-width: 800px) {
     padding: 30px;
@@ -313,15 +302,7 @@ const RightCol = styled.div`
     height: 200px;
   }
 
-  /* Matches the row's own breakpoint: below it the row stacks, so this column
-     is the bottom of the card and the fillets move with it. */
-  @media (max-width: 768px) {
-    border-radius: 0 0 ${PANEL_RADIUS - 1}px ${PANEL_RADIUS - 1}px;
-  }
 
-  @media (max-width: 576px) {
-    border-radius: 0 0 ${PANEL_RADIUS_SM - 1}px ${PANEL_RADIUS_SM - 1}px;
-  }
 `;
 
 const ImageWrapper = styled.div`
@@ -399,73 +380,102 @@ const PlusSign = styled.div`
   display: none;
 `;
 
-/* Each row is a glass slab.
+/* A row is a stationary shell holding a sliding tile.
  *
- * Deliberately `glassSurface` with the blur switched off rather than the full
- * `glassPanel`, for two reasons. First, cost: a backdrop-filter is re-sampled
- * every frame its backdrop moves, and unlike the home page's four static cells
- * these eight scroll, over a `background-attachment: fixed` field -- the one
- * combination that reliably drops frames. Second, there is nothing behind a row
- * but that smooth gradient, and blurring a smooth gradient returns the gradient,
- * so the blur was buying no picture for the price. The fill, the rim, the inset
- * shading and the shadows all stay, so the slabs still read as glass.
+ * The reveal panel has to live on the shell, not on the tile. A pseudo-element
+ * is carried along by its parent's transform, and it can never paint behind
+ * its parent's own background -- so as a pseudo of the tile it could only sit
+ * BESIDE the tile, butting a square edge against a rounded one and leaving
+ * notches at the corners. On the shell it stays put, the tile slides off it,
+ * and it runs on underneath the tile's fillets so the corners stay clean.
  *
- * `::before` is spoken for by the reveal tab, so the contour light goes on
- * `::after` and the grain highlight is the one part of the panel recipe this
- * page does without. */
-const Row = styled.div`
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
-  ${glassSurface}
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  /* The reveal tab sits outside the box, so the surface's clip has to go. The
-     fill and border still follow the fillets on their own. */
-  overflow: visible;
-  transition: transform 0.3s ease, box-shadow ${HOVER_FADE} ease, border-color ${HOVER_FADE} ease;
-  letter-spacing: 0.5px;
+ * The panel never fades -- it is simply uncovered. Because the tile is glass
+ * it cannot occlude anything, so instead of hiding the panel behind it, the
+ * panel's own edge tracks the tile's: it is clipped to whatever the slide has
+ * exposed. Square tiles have no corner cut-outs to fill, so it is just the
+ * strip; anything painted past it would sit under the tile and show through.
+ *
+ * The tile is `glassSurface` with the blur switched off rather than the full
+ * `glassPanel`. A backdrop-filter is re-sampled every frame its backdrop moves,
+ * and unlike the home page's four static cells these eight scroll over a
+ * `background-attachment: fixed` field. There is nothing behind a row but that
+ * smooth gradient, and blurring a smooth gradient returns the gradient. */
+const REVEAL = 30;
+
+const RowShell = styled.div`
   position: relative;
+  width: 100%;
   cursor: pointer;
 
-  &::after {
-    ${rimLight}
-  }
-
-  /* Blue reveal column with centered plus, revealed when row shifts right */
   &::before {
     content: "+";
     position: absolute;
-    left: -30px; /* hidden until row translates right */
+    left: 0;
     top: 0;
-    width: 30px;
-    height: 100%;
-    background: ${HOVER_WASH}; /* the same wash every hover target uses */
-    border-radius: ${PANEL_RADIUS}px 0 0 ${PANEL_RADIUS}px;
-    color: ${HOVER_INK}; /* plus uses the hover ink */
+    bottom: 0;
+    width: ${REVEAL}px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-left: 7px;
     font-size: 30px;
+    line-height: 1;
+    color: ${HOVER_INK};
     pointer-events: none;
+    /* Clipped away at rest rather than sized to nothing: with border-box a
+       zero width still cannot go below the element's own padding, which left
+       a sliver of the strip showing as a blue line. A clip has no such floor.
+       The panel is always "there"; the slide just uncovers it. */
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.3s ease;
+    background: ${REVEAL_FILL};
   }
 
-  &:hover {
-    transform: translateX(30px);
-    ${hoverLit}
+  &:hover::before {
+    clip-path: inset(0 0 0 0);
+  }
+
+  @media (max-width: 768px) {
+    &::before {
+      display: none; /* no slide on mobile, so nothing to reveal */
+    }
+  }
+`;
+
+const RowTile = styled.div`
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1; /* rides above the reveal panel */
+  ${glassSurface}
+  ${flushPanel}
+  border-bottom: 0.5px solid var(--dividing-line);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  letter-spacing: 0.5px;
+  /* The slide is the whole hover indication -- no glow, no lit rim. */
+  transition: transform 0.3s ease;
+
+  ${RowShell}:hover & {
+    transform: translateX(${REVEAL}px);
   }
 
   @media (max-width: 768px) {
     flex-direction: column;
-    &:hover {
+
+    ${RowShell}:hover & {
       transform: none;
-    }
-    &::before {
-      display: none; /* hide reveal column on mobile */
     }
   }
 
-  @media (max-width: 576px) {
-    border-radius: ${PANEL_RADIUS_SM}px;
-  }
 `;
+
+// eslint-disable-next-line react/prop-types
+function Row({ children, ...rest }) {
+  return (
+    <RowShell {...rest}>
+      <RowTile>{children}</RowTile>
+    </RowShell>
+  );
+}

@@ -1,12 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
-import { Nav, NavAboutSection } from './NavBarComponent';
+import { createGlobalStyle, css } from 'styled-components';
+import { Nav, NavAboutSection, NavSections } from './NavBarComponent';
 import {
   rootVars,
   pageBackground,
   typography,
   glassSurface,
   rimLight,
-  grainHighlight,
+  cornerLight,
   hoverWashLayer,
   PANEL_RADIUS_SM,
   NAV_OFFSET,
@@ -47,7 +47,7 @@ const GlassGlobalStyle = createGlobalStyle`
   }
 
   ${Nav}${Nav}::after {
-    ${grainHighlight}
+    ${cornerLight}
   }
 
   /* The About button gets the same fading wash as the bento cells; the base
@@ -79,6 +79,30 @@ const GlassGlobalStyle = createGlobalStyle`
     color: ${HOVER_INK};
   }
 
+  /* $compactNav halves the bar's height. The height is all vertical padding
+     on NavSections, so halving that halves the bar; pages that opt in must
+     also reclaim the freed space in their scroll container. */
+  ${(p) => p.$compactNav && css`
+    ${NavSections}${NavSections} {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    @media (max-width: 800px) {
+      ${NavSections}${NavSections} {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      ${NavSections}${NavSections} {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+    }
+  `}
+
   @media (max-width: 576px) {
     ${Nav}${Nav} {
       margin: ${NAV_OFFSET_SM}px 6px 0;
@@ -89,6 +113,32 @@ const GlassGlobalStyle = createGlobalStyle`
       border-radius: ${PANEL_RADIUS_SM - 2}px;
     }
   }
+
+  /* $flushNav returns the bar to the original geometry: full width, square,
+     sharing a single divider with the page instead of floating as a panel.
+     It keeps the glass fill; only the panel chrome comes off. Declared last
+     so it overrides the floating rules above, media query included. */
+  ${(p) => p.$flushNav && css`
+    ${Nav}${Nav} {
+      width: 100%;
+      margin: 0;
+      border: 0;
+      border-bottom: 1px solid var(--dividing-line);
+      border-radius: 0;
+    }
+
+    ${Nav}${Nav}::before,
+    ${Nav}${Nav}::after {
+      display: none;
+    }
+
+    @media (max-width: 576px) {
+      ${Nav}${Nav} {
+        margin: 0;
+        border-radius: 0;
+      }
+    }
+  `}
 `;
 
 export default GlassGlobalStyle;

@@ -6,6 +6,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } from './NavBarComponent';
 import GlassGlobalStyle from './GlassGlobalStyle';
 import GlassPanel from './GlassPanel';
+import { flushPanel } from './glass';
 import logoImg from "/assets/nb-logo.png";
 
 import headshotImg from "/assets/headshot.jpg";
@@ -13,7 +14,7 @@ import headshotImg from "/assets/headshot.jpg";
 export default function AboutPage() {
   return (
     <>
-      <GlassGlobalStyle />
+      <GlassGlobalStyle $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -75,18 +76,18 @@ const Main = styled.div`
   flex-grow: 1;
   /* The nav is a floating panel now, so its 9px top margin comes off the
      scroll area as well as its own height. */
-  height: calc(100vh - 200px - 9px);
+  height: calc(100vh - 200px);
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
   scrollbar-color: var(--dividing-line) var(--background); /* Firefox */
   overflow-x: hidden;
 
   @media (max-width: 800px) {
-    height: calc(100vh - 120px - 9px);
+    height: calc(100vh - 120px);
   }
 
   @media (max-width: 576px) {
-    height: calc(100vh - 75px - 6px); /* the nav's margin narrows here */
+    height: calc(100vh - 75px);
   }
 `;
 
@@ -97,12 +98,9 @@ const MainGrid = styled.div`
      one viewport. Short content still stretches to fill, as before. */
   min-height: 100%;
   box-sizing: border-box;
-  /* Lines the columns up with the floating nav's margins. */
-  padding: 9px 11px 12px;
   grid-template-columns: 10% 90%;
 
   @media (max-width: 576px) {
-    padding: 6px 6px 12px;
   }
 `;
 
@@ -113,7 +111,9 @@ const AboutSection = styled(GlassPanel)`
   display: flex;
   align-items: flex-start; /* Align items to the top */
   justify-content: center;
-  margin-right: 4px;
+  ${flushPanel}
+  border-left: 0.5px solid var(--dividing-line);
+  border-bottom: 0.5px solid var(--dividing-line);
 `;
 
 const DescriptionSection = styled(GlassPanel)`
@@ -121,7 +121,9 @@ const DescriptionSection = styled(GlassPanel)`
   align-items: flex-start;
   flex-direction: column;
   /* justify-content: center; */
-  margin-left: 4px;
+  ${flushPanel}
+  border-left: 0.5px solid var(--dividing-line);
+  border-bottom: 0.5px solid var(--dividing-line);
 
   @media (max-width: 576px) {
     padding-bottom: 100px;

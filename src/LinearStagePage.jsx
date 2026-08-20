@@ -14,7 +14,7 @@ import linearStageGif from "/assets/linearStage/linearGif.gif";
 export default function LinearStagePage() {
   return (
     <>
-      <GlassGlobalStyle />
+      <GlassGlobalStyle $compactNav $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>

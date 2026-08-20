@@ -15,7 +15,7 @@ export default function DiffusionEdgePage() {
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
-      <GlassGlobalStyle />
+      <GlassGlobalStyle $compactNav $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>

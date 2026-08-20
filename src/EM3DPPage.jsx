@@ -20,7 +20,7 @@ export default function EM3DPPage() {
 
   return (
     <>
-      <GlassGlobalStyle />
+      <GlassGlobalStyle $compactNav $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>

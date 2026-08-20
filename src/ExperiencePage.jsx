@@ -6,12 +6,13 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Nav, NavLogoSection, LogoBox, Logo, NBTitle, NavLinkSection, LinkBox } from './NavBarComponent';
 import GlassGlobalStyle from './GlassGlobalStyle';
 import GlassPanel from './GlassPanel';
+import { flushPanel } from './glass';
 
 import logoImg from "/assets/nb-logo.png";
 export default function ExperiencePage() {
   return (
     <>
-      <GlassGlobalStyle />
+      <GlassGlobalStyle $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -81,14 +82,11 @@ const Main = styled.div`
   flex-grow: 1;
   /* The nav is a floating panel now, so its 9px top margin comes off the
      scroll area as well as its own height. */
-  height: calc(100vh - 100px - 9px);
+  height: calc(100vh - 100px);
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
   scrollbar-color: var(--dividing-line) var(--background); /* Firefox */
 
-  @media (max-width: 576px) {
-    height: calc(100vh - 100px - 6px); /* the nav's margin narrows here */
-  }
 `;
 
 const MainGrid = styled.div`
@@ -98,12 +96,9 @@ const MainGrid = styled.div`
      one viewport. Short content still stretches to fill, as before. */
   min-height: 100%;
   box-sizing: border-box;
-  /* Lines the columns up with the floating nav's margins. */
-  padding: 9px 11px 12px;
   grid-template-columns: 10% 90%;
 
   @media (max-width: 576px) {
-    padding: 6px 6px 12px;
   }
 `;
 
@@ -114,7 +109,9 @@ const ExperienceSection = styled(GlassPanel)`
   display: flex;
   align-items: flex-start; /* Align items to the top */
   justify-content: center;
-  margin-right: 4px;
+  ${flushPanel}
+  border-left: 0.5px solid var(--dividing-line);
+  border-bottom: 0.5px solid var(--dividing-line);
 `;
 
 const ContentSection = styled(GlassPanel)`
@@ -122,7 +119,9 @@ const ContentSection = styled(GlassPanel)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start; /* Push items to the top */
-  margin-left: 4px;
+  ${flushPanel}
+  border-left: 0.5px solid var(--dividing-line);
+  border-bottom: 0.5px solid var(--dividing-line);
 
   @media (max-width: 576px) {
     padding-bottom: 100px;

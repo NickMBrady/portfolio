@@ -7,9 +7,8 @@ import { Nav, NavLogoSection, NavLinkSection, NBTitle, LogoBox, LinkBox, Logo } 
 import { NavAboutSection } from './NavBarComponent';
 import GlassGlobalStyle from './GlassGlobalStyle';
 import GlassPanel from './GlassPanel';
-import { hoverWashLayer, hoverLit, hoverPanelTransition, hoverTitle, hoverIcon, HOVER_INK } from './glass';
+import { flushPanel, hoverWashLayer, hoverLit, hoverPanelTransition, hoverTitle, hoverIcon, HOVER_INK } from './glass';
 import { useNavigate } from 'react-router-dom';
-import NoiseControls from './NoiseControls';
 import DotSphere from './DotSphere';
 
 import logoImg from "/assets/nb-logo.png";
@@ -19,8 +18,7 @@ export default function HomePage(){
 
   return (
     <>
-      <GlassGlobalStyle />
-      {import.meta.env.DEV && <NoiseControls />}
+      <GlassGlobalStyle $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>
@@ -83,12 +81,12 @@ export default function HomePage(){
 const Main = styled.div`
   position: relative;
   flex-grow: 1;
-  height: calc(100vh - 175px - 9px); /* accounts for the floating nav's top margin */
+  height: calc(100vh - 175px);
   width: 100%;
 
 
   @media (max-width: 576px) {
-    height: calc(100vh - 80px - 6px); /* accounts for the floating nav's top margin */
+    height: calc(100vh - 80px);
     overflow-y: auto;
     /* background-color: red; */
   }
@@ -99,16 +97,12 @@ const MainGrid = styled.div`
   display: grid;
   height: 100%;
   box-sizing: border-box;
-  padding: 9px 11px 12px;
-  gap: 8px;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 2fr 1fr;
 
   @media (max-width: 576px) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    padding: 6px;
-    gap: 6px;
     margin-bottom: 100px;
     /* grid-template-rows: auto repeat(4, 1fr);  */
     /* height: calc(100vh - 100px); */
@@ -117,8 +111,16 @@ const MainGrid = styled.div`
   }
 `;
 
+/* The home bento is flush and square, the way it was originally: cells butt
+   against each other and share a single hairline, so they take the glass fill
+   but none of the panel chrome. A rim would ring all four sides of every cell
+   and double up into a 3px seam wherever two of them meet, and a radius would
+   leave gaps at the joins. */
 const GridSection = styled(GlassPanel)`
   height: 100%;
+  ${flushPanel}
+  border-left: 0.5px solid var(--dividing-line);
+  border-bottom: 0.5px solid var(--dividing-line);
 `;
 const ImageSection = styled(GridSection)`
   position: relative;
@@ -126,10 +128,6 @@ const ImageSection = styled(GridSection)`
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  box-shadow:
-    -2px -2px 12px -6px rgba(110, 165, 245, 0.24),
-    2px 3px 14px -6px rgba(100, 135, 240, 0.28),
-    0 18px 40px -22px rgba(0, 0, 0, 0.55);
 `;
 
 const SceneLayer = styled.div`

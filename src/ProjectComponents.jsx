@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { glassPanel, glassSurface, PANEL_RADIUS_SM } from './glass';
+import { glassPanel, glassSurface, flushPanel } from './glass';
 
 export const SliderContainer = styled.div`
   padding: 0px 20px;
@@ -11,13 +11,20 @@ export const SliderContainer = styled.div`
    come out of the height as well or the last rows are clipped. */
 export const Main = styled.div`
   flex-grow: 1;
-  height: calc(100vh - 100px - 9px); /* accounts for the floating nav's top margin */
+  /* Detail pages run a $compactNav bar, so the reserve is the old one minus
+     the padding that halving removed: 4rem above 800px, 2rem below it, 1rem
+     below 576px. The trailing term is the floating nav's top margin. */
+  height: calc(100vh - 36px);
   overflow-y: auto;
   scrollbar-width: none;
   scrollbar-color: var(--dividing-line) transparent; /* Firefox */
 
+  @media (max-width: 800px) {
+    height: calc(100vh - 68px);
+  }
+
   @media (max-width: 576px) {
-    height: calc(100vh - 100px - 6px); /* accounts for the floating nav's top margin */
+    height: calc(100vh - 84px);
   }
 `;
 
@@ -78,10 +85,12 @@ export const Paragraph = styled.p`
 `;
 
 /* Media sits in the same glass frame as everything else. An img is a replaced
-   element, so it cannot carry the rim and grain pseudo-elements -- it takes
+   element, so it cannot carry the rim and corner-light pseudo-elements -- it takes
    the surface alone, with border-box so the frame stays inside the column. */
 export const Image = styled.img`
   ${glassSurface}
+  ${flushPanel}
+  border: 0.5px solid var(--dividing-line);
   box-sizing: border-box;
   width: 100%;
   height: auto;
@@ -92,13 +101,12 @@ export const Image = styled.img`
     margin-top: 30px;
   }
 
-  @media (max-width: 576px) {
-    border-radius: ${PANEL_RADIUS_SM}px;
-  }
 `
 
 export const YouTubeContainer = styled.div`
   ${glassPanel}
+  ${flushPanel}
+  border: 0.5px solid var(--dividing-line);
   width: 100%;
   margin: 20px 0;
   margin-top: 40px;
@@ -128,6 +136,8 @@ export const PdfContainer = styled.div`
    behind glass rather than a bare rectangle. */
 export const ImageSliderDiv = styled.div`
   ${glassPanel}
+  ${flushPanel}
+  border: 0.5px solid var(--dividing-line);
   height: 700px;
   display: flex;
   align-items: center;

@@ -1,11 +1,13 @@
 import 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { glassPanel } from './glass';
+import { glassPanel, flushPanel } from './glass';
 
 // Styled component for the Card container
 const CardContainer = styled.div`
   ${glassPanel}
+  ${flushPanel}
+  border: 0.5px solid var(--dividing-line);
   padding: 40px;
   display: flex;
   flex-direction: column;

@@ -21,26 +21,15 @@ export const PANEL_GAP_SM = 6;
 export const PANEL_RADIUS = 22;
 export const PANEL_RADIUS_SM = 16;
 
-// The grain is generated, not an asset: fractal noise, desaturated to pure
-// greyscale, then contrast-stretched so only the top of its value range
-// survives. Exposed as a CSS variable so it can be retuned live in dev.
-export const NOISE_SIZE = '610px';
-export const NOISE_IMAGE =
-  `url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E` +
-  `%3Cfilter id='n' color-interpolation-filters='sRGB'%3E` +
-  `%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E` +
-  `%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E` +
-  `%3CfeFuncR type='linear' slope='8.3333' intercept='-5.0000'/%3E` +
-  `%3CfeFuncG type='linear' slope='8.3333' intercept='-5.0000'/%3E` +
-  `%3CfeFuncB type='linear' slope='8.3333' intercept='-5.0000'/%3E` +
-  `%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E` +
-  `%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
-
 // The blue wash used by every hover target. A gradient cannot be transitioned,
 // so it is always painted on an overlay whose opacity animates instead.
 export const HOVER_WASH =
   'linear-gradient(135deg, rgba(74, 159, 224, 0.92) 0%, rgba(70, 110, 215, 0.9) 55%, rgba(95, 124, 232, 0.92) 100%)';
 export const HOVER_INK = '#0a0f16';
+// Solid fill for the Projects reveal. Flat rather than the wash gradient so
+// the strip and the corner pieces that continue under the tile's fillets
+// cannot disagree at their seam.
+export const REVEAL_FILL = 'rgba(74, 159, 224, 0.92)';
 export const HOVER_FADE = '0.45s';
 // The other halves of the same hover. The title tracks the wash exactly so the
 // tile and its label resolve together; the icon still turns a little slower
@@ -60,11 +49,7 @@ export const rootVars = css`
   --dividing-line: rgba(150, 178, 208, 0.14);
   /* only consumed as a scrollbar track colour by the scrolling pages */
   --background: #0a0f16;
-  --glass-fill: linear-gradient(155deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.012) 45%, rgba(120, 150, 190, 0.025) 100%);
-  --noise-size: ${NOISE_SIZE};
-  --noise-image: ${NOISE_IMAGE};
-  --accent-teal: #4a9fe0;
-  --accent-violet: #5f7ce8;
+  --glass-fill: linear-gradient(155deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.006) 45%, rgba(120, 150, 190, 0.012) 100%);
 `;
 
 export const pageBackground = css`
@@ -113,6 +98,14 @@ export const glassSurface = css`
     0 18px 40px -22px rgba(0, 0, 0, 0.55);
 `;
 
+/* Clips a pseudo-element down to just its border ring. */
+const ringMask = css`
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+`;
+
 /* Contour light: a spectral rim reflection hugging the fillets. The conic
    gradient peaks white at the top-left light source with dispersion fringes on
    either side (chromatic aberration), and a cooler secondary glint at the
@@ -136,36 +129,55 @@ export const rimLight = css`
     rgba(255, 255, 255, 0.50) 315deg,
     rgba(140, 165, 255, 0.16) 338deg,
     rgba(255, 255, 255, 0.10) 360deg);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
+  ${ringMask}
 `;
 
-/* Textured highlight: the grain IS the light. The soft radials survive only in
-   the mask, shaping where the noise shows. Inset so it never touches the rim.
-   Use as the body of an ::after. */
-export const grainHighlight = css`
+/* The same contour light, but with its dynamic range compressed: a gentler
+   peak and a raised floor. rimLight's 0.03-to-0.50 swing is built for a large
+   panel, where it has room to travel; squeezed around something small like a
+   capsule the whole range lands in a short arc and reads as blotchy. Same
+   light direction, just more even. */
+export const rimLightEven = css`
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: conic-gradient(from 0deg at 50% 50%,
+    rgba(255, 255, 255, 0.13) 0deg,
+    rgba(255, 255, 255, 0.10) 40deg,
+    rgba(150, 195, 255, 0.12) 95deg,
+    rgba(255, 255, 255, 0.19) 132deg,
+    rgba(150, 180, 255, 0.13) 168deg,
+    rgba(255, 255, 255, 0.10) 215deg,
+    rgba(150, 195, 255, 0.14) 285deg,
+    rgba(255, 255, 255, 0.26) 315deg,
+    rgba(160, 185, 255, 0.15) 338deg,
+    rgba(255, 255, 255, 0.13) 360deg);
+  ${ringMask}
+`;
+
+/* Corner light: a soft highlight pooling in the fillets -- brightest where the
+   light source sits at the top-left, with weaker catches at the two right
+   corners. Inset so it never touches the rim. Use as the body of an ::after. */
+export const cornerLight = css`
   content: "";
   position: absolute;
   inset: 2px;
   border-radius: ${PANEL_RADIUS - 2}px;
   pointer-events: none;
-  background-image: var(--noise-image);
-  background-size: var(--noise-size) var(--noise-size);
   mix-blend-mode: screen;
-  opacity: 0.45;
-  -webkit-mask-image:
-    radial-gradient(460px 340px at 0% 0%, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.40) 30%, rgba(255, 255, 255, 0.20) 58%, rgba(255, 255, 255, 0.07) 80%, transparent 100%),
-    radial-gradient(300px 240px at 100% 0%, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.19) 40%, rgba(255, 255, 255, 0.07) 72%, transparent 100%),
-    radial-gradient(400px 300px at 100% 100%, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.21) 40%, rgba(255, 255, 255, 0.08) 72%, transparent 100%);
-  mask-image:
-    radial-gradient(460px 340px at 0% 0%, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.40) 30%, rgba(255, 255, 255, 0.20) 58%, rgba(255, 255, 255, 0.07) 80%, transparent 100%),
-    radial-gradient(300px 240px at 100% 0%, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.19) 40%, rgba(255, 255, 255, 0.07) 72%, transparent 100%),
-    radial-gradient(400px 300px at 100% 100%, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.21) 40%, rgba(255, 255, 255, 0.08) 72%, transparent 100%);
+  opacity: 0.11;
+  background:
+    radial-gradient(460px 340px at 0% 0%, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.14) 30%, rgba(255, 255, 255, 0.07) 58%, rgba(255, 255, 255, 0.025) 80%, transparent 100%),
+    radial-gradient(300px 240px at 100% 0%, rgba(255, 255, 255, 0.105) 0%, rgba(255, 255, 255, 0.067) 40%, rgba(255, 255, 255, 0.025) 72%, transparent 100%),
+    radial-gradient(400px 300px at 100% 100%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.074) 40%, rgba(255, 255, 255, 0.028) 72%, transparent 100%);
 `;
 
-/* A complete glass panel: surface, rim and grain, with the mobile radii. Sets
+/* A complete glass panel: surface, rim and corner light, with the mobile
+   radii. Sets
    no size, so the caller decides whether it fills a grid cell or wraps
    content. */
 export const glassPanel = css`
@@ -178,7 +190,7 @@ export const glassPanel = css`
   }
 
   &::after {
-    ${grainHighlight}
+    ${cornerLight}
   }
 
   @media (max-width: 576px) {
@@ -236,4 +248,24 @@ export const hoverIcon = css`
   ${aboveWash}
   transition: transform ${HOVER_ICON_SPIN} ease, color ${HOVER_ICON_FADE} ease;
   color: #9fc0e4;
+`;
+
+/* Squares a glass panel off and strips the chrome that only makes sense on
+   something floating, so panels can butt against one another and share a
+   single hairline. A rim would ring all four sides of every cell and double
+   into a seam wherever two meet; a radius would leave gaps at the joins.
+   Pair with a border on whichever sides need the divider. */
+export const flushPanel = css`
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  @media (max-width: 576px) {
+    border-radius: 0;
+  }
 `;

@@ -14,7 +14,7 @@ import graphImg from "/assets/flexure/graph.jpg";
 export default function FlexurePage() {
   return (
     <>
-      <GlassGlobalStyle />
+      <GlassGlobalStyle $compactNav $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>

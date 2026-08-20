@@ -1,10 +1,11 @@
 import 'react';
 import styled, { css } from 'styled-components';
-import { glassSurface, rimLight } from './glass';
+import { glassSurface, rimLightEven } from './glass';
 
 /* The tags are glass as well, only capsule-shaped: the panel radius is
    replaced by a full round after the surface is laid down, and the rim follows
-   it because rimLight inherits the radius. The grain layer is deliberately
+   it because the rim inherits the radius. It uses the even variant: the
+   panel rim's full swing packed into a capsule this small reads as blotchy. The corner light is deliberately
    left off -- it is cut to the panel radius, so it would square off the ends
    of a pill this small. */
 const glassPill = css`
@@ -14,7 +15,7 @@ const glassPill = css`
   border-radius: 50px;
 
   &::before {
-    ${rimLight}
+    ${rimLightEven}
   }
 `;
 

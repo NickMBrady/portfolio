@@ -39,7 +39,7 @@ export default function OrthoticProstheticPage() {
 
   return (
     <>
-      <GlassGlobalStyle />
+      <GlassGlobalStyle $compactNav $flushNav />
       <Nav>
         <NavLogoSection>
           <LogoBox>
