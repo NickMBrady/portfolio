@@ -256,6 +256,9 @@ const ProjectsSection = styled(GlassPanel)`
   ${flushPanel}
   border-left: 0.5px solid var(--dividing-line);
   border-bottom: 0.5px solid var(--dividing-line);
+  /* The rows to the right draw no left edge of their own, so this bar carries
+     the divider between the two columns itself. */
+  border-right: 0.5px solid var(--dividing-line);
 `;
 
 const ContentSection = styled.div`
